@@ -14,7 +14,7 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class GraphicsAdapterProbe {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Sodium-GraphicsAdapterProbe");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Flexium-GraphicsAdapterProbe");
 
     private static final Set<String> LINUX_PCI_CLASSES = Set.of(
             "0x030000", // PCI_CLASS_DISPLAY_VGA

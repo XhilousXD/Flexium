@@ -1,17 +1,13 @@
 modLoader = "javafml"
-loaderVersion = "[4,)"
+loaderVersion = "[1,)"
 license = "Polyform-Shield-1.0.0"
 
 [[mods]]
 modId = "flexium"
-
-version = "${version}"
+version = "1.0.0"
 displayName = "Flexium"
-
-logoFile = "flexium-icon.png" #optional
-
+logoFile = "flexium-icon.png"
 authors = "Flexium Team"
-
 description = '''
 Flexium is a powerful rendering engine for Minecraft which improves frame rates and reduces lag spikes.
 '''
@@ -31,8 +27,15 @@ config = "flexium-frapi.mixins.json"
 requiredMods = ["fabric_renderer_api_v1"]
 
 [[dependencies.flexium]]
-modId = "neoforge"
-type = "required"
-versionRange = "[26.1.2.10-beta,)"
+modId = "forge"
+mandatory = false
+versionRange = "[1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.flexium]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[26.1.2,)"
 ordering = "NONE"
 side = "BOTH"

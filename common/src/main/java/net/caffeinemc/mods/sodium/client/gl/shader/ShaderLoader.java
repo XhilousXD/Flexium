@@ -11,10 +11,10 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 public class ShaderLoader {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Sodium-ShaderLoader");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Flexium-ShaderLoader");
 
     private static final boolean OPTION_DEBUG_SHADERS =
-            Objects.equal(System.getProperty("sodium.debug.shaders.dump", "false"), "true");
+            Objects.equal(System.getProperty("flexium.debug.shaders.dump", "false"), "true");
 
     /**
      * Creates an OpenGL shader from GLSL sources. The GLSL source file should be made available on the classpath at the
@@ -38,14 +38,25 @@ public class ShaderLoader {
     }
 
     public static String getShaderSource(Identifier name) {
-        String path = String.format("/assets/%s/shaders/%s", name.getNamespace(), name.getPath());
+        String namespace = name.getNamespace();
+        String path = String.format("/assets/%s/shaders/%s", namespace, name.getPath());
 
-        try (InputStream in = ShaderLoader.class.getResourceAsStream(path)) {
-            if (in == null) {
+        InputStream in = ShaderLoader.class.getResourceAsStream(path);
+        if (in == null && namespace.equals("sodium")) {
+            path = String.format("/assets/flexium/shaders/%s", name.getPath());
+            in = ShaderLoader.class.getResourceAsStream(path);
+        }
+        if (in == null && namespace.equals("flexium")) {
+            path = String.format("/assets/sodium/shaders/%s", name.getPath());
+            in = ShaderLoader.class.getResourceAsStream(path);
+        }
+
+        try (InputStream stream = in) {
+            if (stream == null) {
                 throw new RuntimeException("Shader not found: " + path);
             }
 
-            return IOUtils.toString(in, StandardCharsets.UTF_8);
+            return IOUtils.toString(stream, StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new RuntimeException("Failed to read shader source for " + path, e);
         }

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class FabricMixinOverrides implements PlatformMixinOverrides {
-    protected static final String JSON_KEY_SODIUM_OPTIONS = "sodium:options";
+    protected static final String JSON_KEY_SODIUM_OPTIONS = "flexium:options";
 
     @Override
     public List<MixinOverride> applyModOverrides() {

@@ -1,9 +1,9 @@
 {
   "schemaVersion" : 1,
-  "id" : "sodium",
-  "version" : "${version}",
-  "name" : "Sodium",
-  "description" : "Sodium is a powerful rendering engine for Minecraft which greatly improves frame rates and micro-stutter, while fixing many graphical issues",
+  "id" : "flexium",
+  "version" : "1.0.0",
+  "name" : "Flexium",
+  "description" : "Flexium is a powerful rendering engine for Minecraft which greatly improves frame rates and micro-stutter, while fixing many graphical issues",
   "authors" : [
     {
       "name" : "JellySquid (jellysquid3)",
@@ -43,7 +43,7 @@
     "issues" : "https://github.com/CaffeineMC/sodium/issues"
   },
   "license" : "Polyform-Shield-1.0.0",
-  "icon" : "sodium-icon.png",
+  "icon" : "flexium-icon.png",
   "environment" : "client",
   "entrypoints" : {
     "client" : [
@@ -61,15 +61,15 @@
         "modmenu.discord" : "https://caffeinemc.net/discord",
         "modmenu.github_releases" : "https://github.com/CaffeineMC/sodium/releases",
         "modmenu.kofi" : "https://caffeinemc.net/donate",
-        "modmenu.modrinth" : "https://modrinth.com/mod/sodium"
+        "modmenu.modrinth" : "https://modrinth.com/mod/flexium"
       }
     }
   },
-  "accessWidener" : "sodium-fabric.accesswidener",
+  "accessWidener" : "flexium-fabric.accesswidener",
   "mixins" : [
-    "sodium-common.mixins.json",
-    "sodium-frapi.mixins.json",
-    "sodium-fabric.mixins.json"
+    "flexium-common.mixins.json",
+    "flexium-frapi.mixins.json",
+    "flexium-fabric.mixins.json"
   ],
   "depends" : {
     "minecraft": "26.1.2",

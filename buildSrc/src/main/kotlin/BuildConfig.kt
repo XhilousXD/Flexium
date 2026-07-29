@@ -8,7 +8,7 @@ object BuildConfig {
     val SUPPORT_FRAPI : Boolean = true
 
     // https://semver.org/
-    val MOD_VERSION: String = "0.9.1"
+    val MOD_VERSION: String = "1.0.0"
 
     val MINECRAFT_VERSION_SHORT: String = MINECRAFT_VERSION
             .replace("-snapshot-", "s")
@@ -61,5 +61,5 @@ object BuildConfig {
             .trim()
             .replace("[ReleaseTag]()", RELEASE_TAG)
             .replace("[MCVersion]()", MINECRAFT_VERSION)
-            .replace("[SodiumVersion]()", MOD_VERSION)
+            .replace("[FlexiumVersion]()", MOD_VERSION)
 }

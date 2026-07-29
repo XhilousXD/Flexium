@@ -62,7 +62,7 @@ public class VideoSettingsScreen extends Screen implements ScreenPromptable, Scr
     }
 
     private VideoSettingsScreen(Screen prevScreen, @Nullable OptionPage initiallyFocusedPage) {
-        super(Component.literal("Sodium Renderer Settings"));
+        super(Component.literal("Flexium Renderer Settings"));
 
         this.prevScreen = prevScreen;
         this.initiallyFocusedPage = initiallyFocusedPage;
@@ -237,8 +237,8 @@ public class VideoSettingsScreen extends Screen implements ScreenPromptable, Scr
         int actionRowY = stackVertically ? closeY + dy : this.getLimitY() - (Layout.INNER_MARGIN + buttonH);
 
         this.closeButton = new KeyBoundButtonWidget(new Dim2i(closeX, closeY, buttonW, buttonH), Component.translatable("gui.done"), this::onClose, true, false, GLFW.GLFW_KEY_D);
-        this.applyButton = new KeyBoundButtonWidget(new Dim2i(actionRowX, actionRowY, buttonW, buttonH), Component.translatable("sodium.options.buttons.apply"), ConfigManager.CONFIG::applyAllOptions, true, false, GLFW.GLFW_KEY_A);
-        this.undoButton = new KeyBoundButtonWidget(new Dim2i(actionRowX + dx, actionRowY + dy, buttonW, buttonH), Component.translatable("sodium.options.buttons.undo"), this::undoChanges, true, false, GLFW.GLFW_KEY_U);
+        this.applyButton = new KeyBoundButtonWidget(new Dim2i(actionRowX, actionRowY, buttonW, buttonH), Component.translatable("flexium.options.buttons.apply"), ConfigManager.CONFIG::applyAllOptions, true, false, GLFW.GLFW_KEY_A);
+        this.undoButton = new KeyBoundButtonWidget(new Dim2i(actionRowX + dx, actionRowY + dy, buttonW, buttonH), Component.translatable("flexium.options.buttons.undo"), this::undoChanges, true, false, GLFW.GLFW_KEY_U);
 
         this.addRenderableWidget(this.closeButton);
         this.addRenderableWidget(this.undoButton);
@@ -325,6 +325,27 @@ public class VideoSettingsScreen extends Screen implements ScreenPromptable, Scr
     @Override
     public void extractRenderState(@NonNull GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
         this.updateControls(mouseX, mouseY);
+
+        int winX = this.dim.x();
+        int winY = this.dim.y();
+        int winW = this.dim.width();
+        int winH = this.dim.height();
+
+        // Render main dark frame & top header bar
+        graphics.fill(winX, winY, winX + winW, winY + winH, 0xFA141417);
+        graphics.fill(winX, winY, winX + winW, winY + 22, 0xFF101012);
+
+        // Top-left logo and title
+        graphics.text(this.font, Component.literal("F"), winX + 8, winY + 7, 0xFFAB94E4);
+        graphics.text(this.font, Component.literal("Flexium 1.0.0"), winX + 20, winY + 7, Colors.FOREGROUND);
+
+        // Top-center title
+        String headerTitle = "Flexium - Optimization Mod";
+        int titleWidth = this.font.width(headerTitle);
+        graphics.text(this.font, Component.literal(headerTitle), winX + (winW - titleWidth) / 2, winY + 7, 0xFFAB94E4);
+
+        // Top-right close button icon
+        graphics.text(this.font, Component.literal("X"), winX + winW - 14, winY + 7, Colors.FOREGROUND_DISABLED);
 
         super.extractRenderState(graphics, this.prompt != null ? -1 : mouseX, this.prompt != null ? -1 : mouseY, delta);
 
@@ -452,7 +473,7 @@ public class VideoSettingsScreen extends Screen implements ScreenPromptable, Scr
     public boolean mouseScrolled(double x, double y, double f, double amount) {
         // change the gui scale with scrolling if the control key is held
         if (Minecraft.getInstance().hasControlDown()) {
-            var location = Identifier.parse("sodium:general.gui_scale");
+            var location = Identifier.parse("flexium:general.gui_scale");
             var option = ConfigManager.CONFIG.getOption(location);
             if (option instanceof IntegerOption guiScaleOption) {
                 if (guiScaleOption.getValidatedValue() instanceof Integer intValue) {
@@ -558,7 +579,7 @@ public class VideoSettingsScreen extends Screen implements ScreenPromptable, Scr
     static {
         DONATION_PROMPT_MESSAGE = List.of(
                 FormattedText.composite(Component.literal("Hello!")),
-                FormattedText.composite(Component.literal("It seems that you've been enjoying "), Component.literal("Sodium").withColor(0x27eb92), Component.literal(", the powerful and open rendering optimization mod for Minecraft.")),
+                FormattedText.composite(Component.literal("It seems that you've been enjoying "), Component.literal("Flexium").withColor(0xAB94E4), Component.literal(", the powerful and open rendering optimization mod for Minecraft.")),
                 FormattedText.composite(Component.literal("Mods like these are complex. They require "), Component.literal("thousands of hours").withColor(0xff6e00), Component.literal(" of development, debugging, and tuning to create the experience that players have come to expect.")),
                 FormattedText.composite(Component.literal("If you'd like to show your token of appreciation, and support the development of our mod in the process, then consider "), Component.literal("buying us a coffee").withColor(0xed49ce), Component.literal(".")),
                 FormattedText.composite(Component.literal("And thanks again for using our mod! We hope it helps you (and your computer.)"))

@@ -68,8 +68,16 @@ public class CyclingControl<T extends Enum<T>> implements Control {
             var value = this.option.getValidatedValue();
             Component name = this.option.getElementName(value);
 
-            int strWidth = this.getStringWidth(name);
-            this.drawString(graphics, name, this.getLimitX() - strWidth - Layout.OPTION_TEXT_SIDE_PADDING, this.getCenterY() + Layout.REGULAR_TEXT_BASELINE_OFFSET, Colors.FOREGROUND);
+            int textWidth = this.getStringWidth(name);
+            int boxWidth = Math.max(90, textWidth + 20);
+            int boxHeight = 18;
+            int x = this.getLimitX() - Layout.OPTION_TEXT_SIDE_PADDING - boxWidth;
+            int y = this.getCenterY() - boxHeight / 2;
+
+            this.drawRect(graphics, x, y, x + boxWidth, y + boxHeight, 0xFF1E1E22);
+            this.drawBorder(graphics, x, y, x + boxWidth, y + boxHeight, 0xFF3F3F46);
+
+            this.drawString(graphics, name, x + (boxWidth - textWidth) / 2, y + (boxHeight - this.font.lineHeight) / 2 + 1, Colors.FOREGROUND);
 
             if (this.isHovered()) {
                 graphics.requestCursor(CursorTypes.POINTING_HAND);

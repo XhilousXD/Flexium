@@ -250,7 +250,7 @@ public class RenderSectionManager {
 
     private static Thread makeAsyncCullThread(Runnable runnable) {
         Thread thread = new Thread(runnable);
-        thread.setName("Sodium Async Cull Thread");
+        thread.setName("Flexium Async Cull Thread");
         return thread;
     }
 

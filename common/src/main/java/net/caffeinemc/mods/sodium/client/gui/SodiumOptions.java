@@ -16,7 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class SodiumOptions {
-    private static final String DEFAULT_FILE_NAME = "sodium-options.json";
+    private static final String DEFAULT_FILE_NAME = "flexium-options.json";
 
     public final QualitySettings quality = new QualitySettings();
     public final PerformanceSettings performance = new PerformanceSettings();

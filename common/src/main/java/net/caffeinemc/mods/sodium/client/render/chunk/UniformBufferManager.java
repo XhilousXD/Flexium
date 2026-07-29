@@ -49,7 +49,7 @@ public class UniformBufferManager {
 
         int maxRegions = regionsX * regionsY * regionsX * 2;
 
-        this.uniformStorage = new DynamicUniformStorage<>("Sodium terrain uniforms", GLOBAL_UNIFORM_SIZE, INITIAL_GLOBAL_UNIFORM_CAPACITY);
+        this.uniformStorage = new DynamicUniformStorage<>("Flexium terrain uniforms", GLOBAL_UNIFORM_SIZE, INITIAL_GLOBAL_UNIFORM_CAPACITY);
 
         this.sectionTimeInfo = RenderSystem.getDevice().createBuffer(() -> "Section time info",
                 GpuBuffer.USAGE_UNIFORM_TEXEL_BUFFER | GpuBuffer.USAGE_COPY_DST | GpuBuffer.USAGE_MAP_WRITE,

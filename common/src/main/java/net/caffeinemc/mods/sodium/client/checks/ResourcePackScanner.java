@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 public class ResourcePackScanner {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Sodium-ResourcePackScanner");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Flexium-ResourcePackScanner");
 
     private static final Set<String> SHADER_PROGRAM_BLACKLIST = Set.of(
             "rendertype_solid.vsh",
@@ -73,7 +73,7 @@ public class ResourcePackScanner {
         boolean shown = false;
 
         if (!incompatibleResourcePacks.isEmpty()) {
-            showConsoleMessage("sodium.console.core_shaders_error", true, MessageLevel.SEVERE);
+            showConsoleMessage("flexium.console.core_shaders_error", true, MessageLevel.SEVERE);
 
             for (var entry : incompatibleResourcePacks) {
                 showConsoleMessage(getResourcePackName(entry.resourcePack), false, MessageLevel.SEVERE);
@@ -83,7 +83,7 @@ public class ResourcePackScanner {
         }
 
         if (!likelyIncompatibleResourcePacks.isEmpty()) {
-            showConsoleMessage("sodium.console.core_shaders_warn", true, MessageLevel.WARN);
+            showConsoleMessage("flexium.console.core_shaders_warn", true, MessageLevel.WARN);
 
             for (var entry : likelyIncompatibleResourcePacks) {
                 showConsoleMessage(getResourcePackName(entry.resourcePack), false, MessageLevel.WARN);
@@ -93,7 +93,7 @@ public class ResourcePackScanner {
         }
 
         if (shown) {
-            showConsoleMessage("sodium.console.core_shaders_info", true, MessageLevel.INFO);
+            showConsoleMessage("flexium.console.core_shaders_info", true, MessageLevel.INFO);
         }
     }
 

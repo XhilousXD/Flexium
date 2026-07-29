@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AmdWorkarounds {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Sodium-AmdWorkarounds");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Flexium-AmdWorkarounds");
 
     public static boolean isAmdGraphicsCardPresent() {
         return GraphicsAdapterProbe.getAdapters()

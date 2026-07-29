@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  * context creation, and uses the implementation details of the OpenGL context to perform validation.
  */
 public class PostLaunchChecks {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Sodium-PostlaunchChecks");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Flexium-PostlaunchChecks");
 
     public static void onContextInitialized(NativeWindowHandle window, GlContextInfo context) {
         GraphicsDriverChecks.postContextInit(window, context);
@@ -20,7 +20,7 @@ public class PostLaunchChecks {
         // FIXME: This can be determined earlier, but we can't access the GUI classes in pre-launch
         if (isUsingPojavLauncher()) {
             throw new RuntimeException("It appears that you are using PojavLauncher, which is not supported when " +
-                    "using Sodium. Please check your mods list.");
+                    "using Flexium. Please check your mods list.");
         }
     }
 

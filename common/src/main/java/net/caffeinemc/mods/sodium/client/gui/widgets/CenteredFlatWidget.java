@@ -44,8 +44,8 @@ public abstract class CenteredFlatWidget extends AbstractWidget {
 
         this.hovered = this.isMouseOver(mouseX, mouseY);
 
-        int backgroundColor = this.hovered ? this.theme.bgHighlight : (this.selected ? this.theme.bgDefault : this.theme.bgInactive);
-        int textColor = this.selected || !this.isSelectable ? this.theme.themeLighter : (this.hovered ? this.theme.theme : this.theme.themeDarker);
+        int backgroundColor = this.selected ? Colors.TAB_ACTIVE_BG : (this.hovered ? this.theme.bgHighlight : this.theme.bgInactive);
+        int textColor = this.selected ? Colors.FOREGROUND : (this.hovered ? this.theme.themeLighter : this.theme.themeDarker);
 
         int x1 = this.getX();
         int y1 = this.getY();
@@ -57,7 +57,7 @@ public abstract class CenteredFlatWidget extends AbstractWidget {
         }
 
         if (this.selected) {
-            this.drawRect(graphics, x2 - Layout.PAGE_ENTRY_SELECTION_BAR_WIDTH, y1, x2, y2, this.theme.themeLighter);
+            this.drawBorder(graphics, x1, y1, x2, y2, Colors.TAB_ACTIVE_BORDER);
         }
 
         // render icon and get offset for text

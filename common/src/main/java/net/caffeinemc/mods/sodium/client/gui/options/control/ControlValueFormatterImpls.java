@@ -57,7 +57,7 @@ public class ControlValueFormatterImpls {
                 return Component.translatable("gui.none");
             } else {
                 int sv = 2 * v + 1;
-                return Component.translatable("sodium.options.biome_blend.value", sv, sv);
+                return Component.translatable("flexium.options.biome_blend.value", sv, sv);
             }
         };
     }
@@ -97,7 +97,7 @@ public class ControlValueFormatterImpls {
             if (v == 0) {
                 return Component.translatable("gui.none");
             } else {
-                return Component.translatable("sodium.options.chunk_fade_time.value", (double) v / 1000.0);
+                return Component.translatable("flexium.options.chunk_fade_time.value", (double) v / 1000.0);
             }
         });
     }

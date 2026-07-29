@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class PlatformHelper {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Sodium-EarlyDriverScanner");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Flexium-EarlyDriverScanner");
 
     public static void showCriticalErrorAndClose(
             @Nullable NativeWindowHandle window,

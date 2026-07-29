@@ -18,11 +18,11 @@ import java.io.IOException;
 
 public class SodiumClientMod {
     private static SodiumOptions OPTIONS;
-    private static final Logger LOGGER = LoggerFactory.getLogger("Sodium");
-    public static final Identifier SODIUM_DEBUG_ENTRY_FULL = Identifier.fromNamespaceAndPath("sodium", "debug_full");
-    public static final Identifier SODIUM_DEBUG_ENTRY_REDUCED = Identifier.fromNamespaceAndPath("sodium", "debug_reduced");
-    public static final Identifier SODIUM_DEBUG_ENTRY_BUFFER_ARENA = Identifier.fromNamespaceAndPath("sodium", "buffer_arena");
-    public static final Identifier SODIUM_FPS_PERCENTILES = Identifier.fromNamespaceAndPath("sodium", "fps_percentiles");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Flexium");
+    public static final Identifier SODIUM_DEBUG_ENTRY_FULL = Identifier.fromNamespaceAndPath("flexium", "debug_full");
+    public static final Identifier SODIUM_DEBUG_ENTRY_REDUCED = Identifier.fromNamespaceAndPath("flexium", "debug_reduced");
+    public static final Identifier SODIUM_DEBUG_ENTRY_BUFFER_ARENA = Identifier.fromNamespaceAndPath("flexium", "buffer_arena");
+    public static final Identifier SODIUM_FPS_PERCENTILES = Identifier.fromNamespaceAndPath("flexium", "fps_percentiles");
 
     private static String MOD_VERSION;
 
@@ -67,7 +67,7 @@ public class SodiumClientMod {
             LOGGER.error("Failed to load configuration file", e);
             LOGGER.error("Using default configuration file in read-only mode");
 
-            Console.instance().logMessage(MessageLevel.SEVERE, "sodium.console.config_not_loaded", true, 12.5);
+            Console.instance().logMessage(MessageLevel.SEVERE, "flexium.console.config_not_loaded", true, 12.5);
 
             var config = SodiumOptions.defaults();
             config.setReadOnly();

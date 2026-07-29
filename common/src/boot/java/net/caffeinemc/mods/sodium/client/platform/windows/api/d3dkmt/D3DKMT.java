@@ -22,7 +22,7 @@ import static org.lwjgl.system.MemoryUtil.memAddress;
 import static org.lwjgl.system.MemoryUtil.memByteBuffer;
 
 public class D3DKMT {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Sodium-D3DKMT");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Flexium-D3DKMT");
 
     public static List<WDDMAdapterInfo> findGraphicsAdapters() {
         if (!Gdi32.isD3DKMTSupported()) {

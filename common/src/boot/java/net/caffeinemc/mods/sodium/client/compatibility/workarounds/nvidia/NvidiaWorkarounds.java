@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class NvidiaWorkarounds {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Sodium-NvidiaWorkarounds");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Flexium-NvidiaWorkarounds");
 
     public static boolean isNvidiaGraphicsCardPresent() {
         return GraphicsAdapterProbe.getAdapters()

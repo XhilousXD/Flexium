@@ -1,8 +1,8 @@
 #version 330 core
 
-#import <sodium:include/fog.glsl>
-#import <sodium:include/globals.glsl>
-#import <sodium:include/chunk_vertex.glsl>
+#import <flexium:include/fog.glsl>
+#import <flexium:include/globals.glsl>
+#import <flexium:include/chunk_vertex.glsl>
 
 out vec4 v_Color;
 out vec2 v_TexCoord;

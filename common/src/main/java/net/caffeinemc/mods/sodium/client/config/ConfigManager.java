@@ -21,7 +21,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ConfigManager {
-    public static final String CONFIG_ENTRY_POINT_KEY = "sodium:config_api_user";
+    public static final String CONFIG_ENTRY_POINT_KEY = "flexium:config_api_user";
 
     private record ConfigUser(
             Supplier<ConfigEntryPoint> configEntrypoint,
@@ -101,7 +101,7 @@ public class ConfigManager {
 
                     configIds.add(configId);
 
-                    if (configId.equals("sodium")) {
+                    if (configId.equals("flexium")) {
                         sodiumModOptions = modConfig;
                     } else {
                         modConfigs.add(modConfig);
@@ -116,7 +116,7 @@ public class ConfigManager {
         modConfigs.sort(Comparator.comparing(ModOptions::name));
 
         if (sodiumModOptions == null) {
-            throw new RuntimeException("Sodium mod config not found");
+            throw new RuntimeException("Flexium mod config not found");
         }
         modConfigs.add(0, sodiumModOptions);
 

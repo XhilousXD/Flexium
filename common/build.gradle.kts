@@ -6,7 +6,7 @@ plugins {
 }
 
 base {
-    archivesName = "sodium-common"
+    archivesName = "flexium-common"
 }
 
 val configurationPreLaunch = configurations.create("preLaunchDeps") {
@@ -65,7 +65,7 @@ dependencies {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/sodium-common.accesswidener")
+    accessWidenerPath = file("src/main/resources/flexium-common.accesswidener")
 
     mixin {
         useLegacyMixinAp = false

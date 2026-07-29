@@ -427,7 +427,7 @@ public abstract class BufferArena implements AllocatorBase {
         }
     }
 
-    private final Identifier textureId = Identifier.parse("sodium:buffer_debug_" + System.identityHashCode(this));
+    private final Identifier textureId = Identifier.parse("flexium:buffer_debug_" + System.identityHashCode(this));
     public final DynamicTexture texture = new DynamicTexture(this.textureId::toString, 200, 200, true);
 
     {

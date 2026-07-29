@@ -56,42 +56,26 @@ public class TickBoxControl implements Control {
                 return;
             }
 
-            final int x = this.getLimitX() - Layout.OPTION_TEXT_SIDE_PADDING - Layout.CONTROL_ICON_SIZE;
-            final int y = this.getCenterY() - Layout.CONTROL_ICON_SIZE / 2;
-            final int xEnd = x + Layout.CONTROL_ICON_SIZE;
-            final int yEnd = y + Layout.CONTROL_ICON_SIZE;
+            final int boxWidth = 44;
+            final int boxHeight = 18;
+            final int x = this.getLimitX() - Layout.OPTION_TEXT_SIDE_PADDING - boxWidth;
+            final int y = this.getCenterY() - boxHeight / 2;
+            final int xEnd = x + boxWidth;
+            final int yEnd = y + boxHeight;
 
             final boolean enabled = this.option.isEnabled();
             final boolean ticked = this.option.getValidatedValue();
 
-            final int color;
+            final int bgColor = enabled ? (ticked ? Colors.TOGGLE_ON : Colors.TOGGLE_OFF) : 0xFF1E1E22;
+            final int borderColor = enabled ? (ticked ? Colors.THEME_LIGHTER : 0xFF3F3F46) : 0xFF2F2F36;
+            final int textColor = enabled ? (ticked ? Colors.FOREGROUND : Colors.FOREGROUND_DISABLED) : Colors.FOREGROUND_DISABLED;
 
-            if (enabled) {
-                color = ticked ? this.theme.theme : Colors.FOREGROUND;
-            } else {
-                color = Colors.FOREGROUND_DISABLED;
-            }
+            this.drawRect(graphics, x, y, xEnd, yEnd, bgColor);
+            this.drawBorder(graphics, x, y, xEnd, yEnd, borderColor);
 
-            if (ticked) {
-                this.drawRect(graphics, x + 2, y + 2, xEnd - 2, yEnd - 2, color);
-            }
-
-            if (enabled) {
-                this.drawBorder(graphics, x, y, xEnd, yEnd, color);
-            } else {
-                var size = 3;
-                graphics.fill(x, y, x + size, y + 1, color);
-                graphics.fill(x, y, x + 1, y + size, color);
-
-                graphics.fill(xEnd - size, y, xEnd, y + 1, color);
-                graphics.fill(xEnd - 1, y, xEnd, y + size, color);
-
-                graphics.fill(x, yEnd - 1, x + size, yEnd, color);
-                graphics.fill(x, yEnd - size, x + 1, yEnd, color);
-
-                graphics.fill(xEnd - size, yEnd - 1, xEnd, yEnd, color);
-                graphics.fill(xEnd - 1, yEnd - size, xEnd, yEnd, color);
-            }
+            String text = ticked ? "ON" : "OFF";
+            int textWidth = this.font.width(text);
+            this.drawString(graphics, text, x + (boxWidth - textWidth) / 2, y + (boxHeight - this.font.lineHeight) / 2 + 1, textColor);
 
             if (this.isHovered()) {
                 graphics.requestCursor(CursorTypes.POINTING_HAND);

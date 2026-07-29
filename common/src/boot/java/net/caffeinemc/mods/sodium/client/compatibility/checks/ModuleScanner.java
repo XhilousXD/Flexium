@@ -23,7 +23,7 @@ import java.util.List;
  * is initialized before injecting.
  */
 public class ModuleScanner {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Sodium-Win32ModuleChecks");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Flexium-Win32ModuleChecks");
 
     private static final String[] RTSS_HOOKS_MODULE_NAMES = {
             "RTSSHooks64.dll",
@@ -98,16 +98,16 @@ public class ModuleScanner {
         }
 
         if (version == null || !isRTSSCompatible(version)) {
-            MessageBox.showMessageBox(window, MessageBox.IconType.ERROR, "Sodium Renderer",
+            MessageBox.showMessageBox(window, MessageBox.IconType.ERROR, "Flexium Renderer",
                     """
-                            You appear to be using an older version of RivaTuner Statistics Server (RTSS) which is not compatible with Sodium.
+                            You appear to be using an older version of RivaTuner Statistics Server (RTSS) which is not compatible with Flexium.
                             
                             You must either update to a newer version (7.3.4 and later) or close the RivaTuner Statistics Server application.
 
                             For more information on how to solve this problem, click the 'Help' button.""",
                     "https://link.caffeinemc.net/help/sodium/incompatible-software/rivatuner-statistics-server/gh-2048");
 
-            throw new RuntimeException("The installed version of RivaTuner Statistics Server (RTSS) is not compatible with Sodium, " +
+            throw new RuntimeException("The installed version of RivaTuner Statistics Server (RTSS) is not compatible with Flexium, " +
                     "see here for more details: https://link.caffeinemc.net/help/sodium/incompatible-software/rivatuner-statistics-server/gh-2048");
         }
     }
@@ -122,7 +122,7 @@ public class ModuleScanner {
     }
 
     private static void checkASUSGpuTweakIII(NativeWindowHandle window) {
-        MessageBox.showMessageBox(window, MessageBox.IconType.ERROR, "Sodium Renderer",
+        MessageBox.showMessageBox(window, MessageBox.IconType.ERROR, "Flexium Renderer",
                 """
                         ASUS GPU Tweak III is not compatible with Minecraft, and causes extreme performance issues and severe graphical corruption when used with Minecraft.
                         

@@ -204,4 +204,19 @@ public class MatrixHelper {
 
         return NormI8.pack(x, y, z);
     }
+
+    /**
+     * Fast-path inline vector transformation for VulkanMod / SIMD batch operations.
+     */
+    public static float fastTransformX(float m00, float m10, float m20, float m30, float x, float y, float z) {
+        return (m00 * x) + (m10 * y) + (m20 * z) + m30;
+    }
+
+    public static float fastTransformY(float m01, float m11, float m21, float m31, float x, float y, float z) {
+        return (m01 * x) + (m11 * y) + (m21 * z) + m31;
+    }
+
+    public static float fastTransformZ(float m02, float m12, float m22, float m32, float x, float y, float z) {
+        return (m02 * x) + (m12 * y) + (m22 * z) + m32;
+    }
 }

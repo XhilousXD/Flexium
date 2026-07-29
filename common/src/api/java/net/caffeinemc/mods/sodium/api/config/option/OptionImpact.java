@@ -10,22 +10,22 @@ public enum OptionImpact implements NameProvider {
     /**
      * Low impact on performance. Changing this option won't affect performance in a measurable or noticeable way.
      */
-    LOW(ChatFormatting.GREEN, "sodium.option_impact.low"),
+    LOW(ChatFormatting.GREEN, "flexium.option_impact.low"),
     
     /**
      * Medium impact on performance. Changing this option may have a noticeable effect on performance in some scenarios and some systems.
      */
-    MEDIUM(ChatFormatting.YELLOW, "sodium.option_impact.medium"),
+    MEDIUM(ChatFormatting.YELLOW, "flexium.option_impact.medium"),
     
     /**
      * High impact on performance. Changing this option will likely have a significant effect on performance in most scenarios.
      */
-    HIGH(ChatFormatting.GOLD, "sodium.option_impact.high"),
+    HIGH(ChatFormatting.GOLD, "flexium.option_impact.high"),
     
     /**
      * Varies in impact on performance. The effect of changing this option on performance is highly dependent on the specific scenario and system.
      */
-    VARIES(ChatFormatting.WHITE, "sodium.option_impact.varies");
+    VARIES(ChatFormatting.WHITE, "flexium.option_impact.varies");
 
     private final Component text;
 

@@ -70,14 +70,14 @@ public class SearchWidget extends AbstractParentWidget {
                 y + Layout.BUTTON_SHORT / 2 - this.font.lineHeight / 2,
                 searchBoxWidth - Layout.BUTTON_SHORT,
                 Layout.BUTTON_SHORT,
-                Component.translatable("sodium.options.search")
+                Component.translatable("flexium.options.search")
         );
 
         this.searchBox.setMaxLength(200);
         this.searchBox.setBordered(false);
         this.searchBox.setResponder(this::triggerSearch);
         this.searchBox.setHint(
-                Component.translatable("sodium.options.search.hint")
+                Component.translatable("flexium.options.search.hint")
                         .withStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
 
         this.addChild(this.searchBox);

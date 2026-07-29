@@ -404,7 +404,7 @@ public class Config implements ConfigState {
 
     public static void onGameNeedsRestart() {
         Console.instance().logMessage(MessageLevel.WARN,
-                "sodium.console.game_restart", true, 10.0);
+                "flexium.console.game_restart", true, 10.0);
     }
 
     public boolean readBooleanOption(Identifier id, boolean appliedValue) {

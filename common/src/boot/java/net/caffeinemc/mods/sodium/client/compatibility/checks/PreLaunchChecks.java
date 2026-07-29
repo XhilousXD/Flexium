@@ -14,7 +14,7 @@ import java.security.ProtectionDomain;
  * opportunity at game startup, and uses a custom hardware prober to search for problematic drivers.
  */
 public class PreLaunchChecks {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Sodium-PreLaunchChecks");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Flexium-PreLaunchChecks");
 
     // These version constants are inlined at compile time.
     private static final String REQUIRED_LWJGL_VERSION =
@@ -78,7 +78,7 @@ public class PreLaunchChecks {
                     You must change the LWJGL version in your launcher to continue. \
                     This is usually controlled by the settings for a profile or instance in your launcher.
 
-                    If you need assistance fixing the LWJGL version, you should contact ###LAUNCHER###, not Sodium."""
+                    If you need assistance fixing the LWJGL version, you should contact ###LAUNCHER###, not Flexium."""
                     .replace("###LAUNCHER###", launcher);
         } else if (isCustomLauncher) {
             advice = """
@@ -105,7 +105,7 @@ public class PreLaunchChecks {
                 .replace("###REQUIRED_VERSION###", REQUIRED_LWJGL_VERSION)
                 .replace("###ADVICE_STRING###", advice);
 
-        PlatformHelper.showCriticalErrorAndClose(null, "Sodium Renderer - Unsupported LWJGL", message,
+        PlatformHelper.showCriticalErrorAndClose(null, "Flexium Renderer - Unsupported LWJGL", message,
                 "https://link.caffeinemc.net/help/sodium/runtime-issue/lwjgl3/gh-2561");
     }
 

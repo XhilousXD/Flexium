@@ -6,7 +6,7 @@ plugins {
 }
 
 base {
-    archivesName = "sodium-frapi"
+    archivesName = "flexium-frapi"
 }
 
 val configurationCommonModJava: Configuration = configurations.create("commonJava") {
@@ -35,7 +35,7 @@ sourceSets.apply {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/sodium-frapi.accesswidener")
+    accessWidenerPath = file("src/main/resources/flexium-frapi.accesswidener")
 
     mixin {
         useLegacyMixinAp = false

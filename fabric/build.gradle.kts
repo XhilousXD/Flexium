@@ -5,7 +5,7 @@ plugins {
 }
 
 base {
-    archivesName = "sodium-fabric"
+    archivesName = "flexium-fabric"
 }
 
 val configurationApiModJava: Configuration = configurations.create("apiJava") {
@@ -86,7 +86,7 @@ dependencies {
 }
 
 loom {
-    accessWidenerPath.set(file("src/main/resources/sodium-fabric.accesswidener"))
+    accessWidenerPath.set(file("src/main/resources/flexium-fabric.accesswidener"))
 
     mixin {
         useLegacyMixinAp = false

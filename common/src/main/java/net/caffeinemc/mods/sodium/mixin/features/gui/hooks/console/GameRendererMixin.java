@@ -41,7 +41,7 @@ public class GameRendererMixin {
             }
         }
 
-        Profiler.get().push("sodium_console_overlay");
+        Profiler.get().push("flexium_console_overlay");
         int mouseX = (int)this.minecraft.mouseHandler.getScaledXPos(this.minecraft.getWindow());
         int mouseY = (int)this.minecraft.mouseHandler.getScaledYPos(this.minecraft.getWindow());
         GuiGraphicsExtractor drawContext = new GuiGraphicsExtractor(this.minecraft, this.gameRenderState.guiRenderState, mouseX, mouseY);

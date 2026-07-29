@@ -4,9 +4,9 @@ import net.caffeinemc.mods.sodium.client.gui.options.TextProvider;
 import net.minecraft.network.chat.Component;
 
 public enum DeferMode implements TextProvider {
-    ALWAYS("sodium.options.defer_chunk_updates.always"),
-    ONE_FRAME("sodium.options.defer_chunk_updates.one_frame"),
-    ZERO_FRAMES("sodium.options.defer_chunk_updates.zero_frames");
+    ALWAYS("flexium.options.defer_chunk_updates.always"),
+    ONE_FRAME("flexium.options.defer_chunk_updates.one_frame"),
+    ZERO_FRAMES("flexium.options.defer_chunk_updates.zero_frames");
 
     private final Component name;
 

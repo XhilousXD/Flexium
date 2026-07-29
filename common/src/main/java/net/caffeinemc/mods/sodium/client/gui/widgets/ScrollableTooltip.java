@@ -24,7 +24,7 @@ import java.util.List;
 
 // TODO: is narration of the tooltip already handled by the screen or is there no narration at all?
 public class ScrollableTooltip {
-    private static final Identifier ARROW_TEXTURE = Identifier.fromNamespaceAndPath("sodium", "textures/gui/tooltip_arrows.png");
+    private static final Identifier ARROW_TEXTURE = Identifier.fromNamespaceAndPath("flexium", "textures/gui/tooltip_arrows.png");
     private static final int ARROW_WIDTH = 5;
     private static final int SPRITE_WIDTH = 10;
     private static final int ARROW_HEIGHT = 9;
@@ -111,7 +111,7 @@ public class ScrollableTooltip {
 
         OptionImpact impact = option.getImpact();
         if (impact != null) {
-            var impactText = Component.translatable("sodium.options.performance_impact_string", impact.getName());
+            var impactText = Component.translatable("flexium.options.performance_impact_string", impact.getName());
             this.content.addAll(this.font.split(impactText.withStyle(ChatFormatting.GRAY), textWidth));
         }
 

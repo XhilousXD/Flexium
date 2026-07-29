@@ -70,6 +70,6 @@ class BugChecks {
     }
 
     private static String getPropertyKey(String name) {
-        return "sodium.checks." + name;
+        return "flexium.checks." + name;
     }
 }

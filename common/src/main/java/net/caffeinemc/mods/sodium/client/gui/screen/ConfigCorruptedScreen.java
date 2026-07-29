@@ -27,7 +27,7 @@ public class ConfigCorruptedScreen extends Screen {
     private final Function<Screen, Screen> nextScreen;
 
     public ConfigCorruptedScreen(@Nullable Screen prevScreen, @Nullable Function<Screen, Screen> nextScreen) {
-        super(Component.translatable("sodium.console.corrupt_config.console.title"));
+        super(Component.translatable("flexium.console.corrupt_config.console.title"));
 
         this.prevScreen = prevScreen;
         this.nextScreen = nextScreen;
@@ -40,7 +40,7 @@ public class ConfigCorruptedScreen extends Screen {
         int buttonY = this.height - SCREEN_PADDING - BUTTON_HEIGHT;
 
         this.addRenderableWidget(Button.builder(Component.translatable("gui.continue"), (btn) -> {
-            Console.instance().logMessage(MessageLevel.INFO, "sodium.console.corrupt_config.console.config_file_was_reset", true, 3.0);
+            Console.instance().logMessage(MessageLevel.INFO, "flexium.console.corrupt_config.console.config_file_was_reset", true, 3.0);
 
             SodiumClientMod.restoreDefaultOptions();
             Minecraft.getInstance().setScreen(this.nextScreen.apply(this.prevScreen));
@@ -55,10 +55,10 @@ public class ConfigCorruptedScreen extends Screen {
     public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
         super.extractRenderState(graphics, mouseX, mouseY, delta);
 
-        graphics.text(this.font, Component.literal("Sodium Renderer"), 32, 32, Colors.FOREGROUND);
-        graphics.text(this.font, Component.translatable("sodium.console.corrupt_config.message.title"), 32, 48, 0xFFFF0000);
+        graphics.text(this.font, Component.literal("Flexium Renderer"), 32, 32, Colors.FOREGROUND);
+        graphics.text(this.font, Component.translatable("flexium.console.corrupt_config.message.title"), 32, 48, 0xFFFF0000);
 
-        var lines = Arrays.stream(Component.translatable("sodium.console.corrupt_config.message.body").getString().split("\n"))
+        var lines = Arrays.stream(Component.translatable("flexium.console.corrupt_config.message.body").getString().split("\n"))
                 .map(Component::literal);
 
         var i = 0;

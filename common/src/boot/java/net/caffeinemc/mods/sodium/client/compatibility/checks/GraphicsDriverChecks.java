@@ -23,7 +23,7 @@ class GraphicsDriverChecks {
                 var installedVersionString = installedVersion.toString();
 
                 PlatformHelper.showCriticalErrorAndClose(window,
-                        "Sodium Renderer - Unsupported Driver",
+                        "Flexium Renderer - Unsupported Driver",
                         """
                                 The game failed to start because the currently installed Intel Graphics Driver is not \
                                 compatible.
@@ -45,7 +45,7 @@ class GraphicsDriverChecks {
                         .toString();
 
                 PlatformHelper.showCriticalErrorAndClose(window,
-                        "Sodium Renderer - Unsupported Driver",
+                        "Flexium Renderer - Unsupported Driver",
                         """
                                 The game failed to start because the currently installed NVIDIA Graphics Driver is not \
                                 compatible.

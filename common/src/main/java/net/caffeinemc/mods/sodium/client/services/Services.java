@@ -7,7 +7,7 @@ import java.util.ServiceLoader;
 import java.util.function.Supplier;
 
 public class Services {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Sodium (Service)");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Flexium (Service)");
 
     // This code is used to load a service for the current environment. Your implementation of the service must be defined
     // manually by including a text file in META-INF/services named with the fully qualified class name of the service.

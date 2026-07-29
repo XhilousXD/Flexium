@@ -23,7 +23,7 @@ public class VertexSerializerRegistryImpl implements VertexSerializerRegistry {
     private static final Path CLASS_DUMP_PATH;
 
     static {
-        var classDumpPath = System.getProperty("sodium.codegen.dump", null);
+        var classDumpPath = System.getProperty("flexium.codegen.dump", null);
 
         if (classDumpPath != null) {
             CLASS_DUMP_PATH = Path.of(classDumpPath);

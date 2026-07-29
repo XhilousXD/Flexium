@@ -69,6 +69,6 @@ public record HashedFingerprint(
 
     private static Path getFilePath() {
         return PlatformRuntimeInformation.getInstance().getConfigDirectory()
-                .resolve("sodium-fingerprint.json");
+                .resolve("flexium-fingerprint.json");
     }
 }

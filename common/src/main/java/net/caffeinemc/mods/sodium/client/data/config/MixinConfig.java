@@ -15,9 +15,9 @@ import java.util.Properties;
  */
 @SuppressWarnings("CanBeFinal")
 public class MixinConfig {
-    protected static final Logger LOGGER = LogManager.getLogger("SodiumConfig");
+    protected static final Logger LOGGER = LogManager.getLogger("FlexiumConfig");
 
-    protected static final String JSON_KEY_SODIUM_OPTIONS = "sodium:options";
+    protected static final String JSON_KEY_SODIUM_OPTIONS = "flexium:options";
 
     private final Map<String, MixinOption> options = new HashMap<>();
 

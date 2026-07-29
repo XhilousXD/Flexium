@@ -17,5 +17,5 @@ public record SodiumResourcePackMetadata(List<String> ignoredShaders) {
                     .apply(instance, SodiumResourcePackMetadata::new)
     );
     public static final MetadataSectionType<SodiumResourcePackMetadata> SERIALIZER =
-            new MetadataSectionType<>("sodium", CODEC);
+            new MetadataSectionType<>("flexium", CODEC);
 }

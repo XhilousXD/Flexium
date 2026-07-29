@@ -16,7 +16,7 @@ import java.util.Set;
 public class SodiumMixinPlugin implements IMixinConfigPlugin {
     private static final String MIXIN_PACKAGE_ROOT = "net.caffeinemc.mods.sodium.mixin.";
 
-    private final Logger logger = LogManager.getLogger("Sodium");
+    private final Logger logger = LogManager.getLogger("Flexium");
     private MixinConfig config;
     private boolean dependencyResolutionFailed;
 

@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 public class Workarounds {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Sodium-Workarounds");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Flexium-Workarounds");
 
     private static final AtomicReference<Set<Reference>> ACTIVE_WORKAROUNDS = new AtomicReference<>(EnumSet.noneOf(Reference.class));
 
@@ -22,7 +22,7 @@ public class Workarounds {
         var workarounds = findNecessaryWorkarounds();
 
         if (!workarounds.isEmpty()) {
-            LOGGER.warn("Sodium has applied one or more workarounds to prevent crashes or other issues on your system: [{}]",
+            LOGGER.warn("Flexium has applied one or more workarounds to prevent crashes or other issues on your system: [{}]",
                     workarounds.stream()
                             .map(Enum::name)
                             .collect(Collectors.joining(", ")));

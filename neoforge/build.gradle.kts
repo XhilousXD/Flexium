@@ -5,7 +5,7 @@ plugins {
 }
 
 base {
-    archivesName = "sodium-neoforge"
+    archivesName = "flexium-neoforge"
 }
 
 repositories {
@@ -160,7 +160,7 @@ neoForge {
     }
 
     mods {
-        create("sodium") {
+        create("flexium") {
             sourceSet(sourceSets["mod"])
             sourceSet(project(":common").sourceSets["main"])
             sourceSet(project(":common").sourceSets["api"])
@@ -169,7 +169,7 @@ neoForge {
             }
         }
 
-        create("sodium-service") {
+        create("flexium-service") {
             sourceSet(sourceSets["main"])
             sourceSet(project(":common").sourceSets["boot"])
         }
@@ -180,7 +180,7 @@ tasks {
     jar {
         from(configurationCommonServiceJava)
         manifest.attributes["FMLModType"] = "LIBRARY"
-        manifest.attributes["Automatic-Module-Name"] = "sodium_service"
+        manifest.attributes["Automatic-Module-Name"] = "flexium_service"
 
         destinationDirectory.set(file(rootProject.layout.buildDirectory).resolve("mods"))
 
@@ -188,7 +188,7 @@ tasks {
             into("META-INF")
         }
 
-        from(project(":common").sourceSets.main.get().output.resourcesDir!!.resolve("sodium-icon.png"))
+        from(project(":common").sourceSets.main.get().output.resourcesDir!!.resolve("flexium-icon.png"))
     }
 
     processResources {

@@ -15,13 +15,13 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 public class SodiumWorkarounds implements GraphicsBootstrapper {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Sodium-Workarounds");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Flexium-Workarounds");
     private static final long EARLY_WINDOW_RESTORE_TIMEOUT_NANOS = TimeUnit.SECONDS.toNanos(30);
     private static final long EARLY_WINDOW_RESTORE_POLL_INTERVAL_MILLIS = 10L;
 
     @Override
     public String name() {
-        return "sodium";
+        return "flexium";
     }
 
     @Override
@@ -43,7 +43,7 @@ public class SodiumWorkarounds implements GraphicsBootstrapper {
 
     private static void restoreEnvironmentChangesAfterEarlyWindowInit() {
         Thread thread = new Thread(SodiumWorkarounds::waitForEarlyWindowAndRestoreEnvironmentChanges,
-                "sodium-workaround-cleanup");
+                "flexium-workaround-cleanup");
         thread.setDaemon(true);
         thread.start();
     }
