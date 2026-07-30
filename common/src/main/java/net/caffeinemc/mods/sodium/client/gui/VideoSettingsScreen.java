@@ -171,6 +171,9 @@ public class VideoSettingsScreen extends Screen implements ScreenPromptable, Scr
         return this.insetY ? 0 : value;
     }
 
+    public static final int HEADER_HEIGHT = 34;
+    public static final int BOTTOM_BAR_HEIGHT = 30;
+
     private void rebuild() {
         this.clearWidgets();
 
@@ -180,66 +183,56 @@ public class VideoSettingsScreen extends Screen implements ScreenPromptable, Scr
         var w = this.getWidth();
         var h = this.getHeight();
 
-        // Search bar removed — topBarHeight = 0
-        int topBarHeight = 0;
-        this.searchWidget = new SearchWidget(this::onSearchResults, new Dim2i(x, y, w, Layout.BUTTON_SHORT));
-        // searchWidget intentionally not added as renderable
+        int headerH = HEADER_HEIGHT;
+        int bottomH = BOTTOM_BAR_HEIGHT;
 
-        int topBarClear = topBarHeight + this.ifInsetY(Layout.INNER_MARGIN);
-        this.pageList = new PageListWidget(new Dim2i(x, y + topBarClear, Layout.PAGE_LIST_WIDTH, h - topBarClear), this);
+        // Search bar removed — dummy object retained for event safety
+        this.searchWidget = new SearchWidget(this::onSearchResults, new Dim2i(x, y, w, Layout.BUTTON_SHORT));
+
+        int contentY = y + headerH;
+        int contentH = h - headerH - bottomH;
+
+        int sidebarWidth = Layout.PAGE_LIST_WIDTH;
+
+        this.pageList = new PageListWidget(new Dim2i(x, contentY, sidebarWidth, contentH), this);
         this.addRenderableWidget(this.pageList);
 
-        boolean stackVertically = false;
-        boolean reserveBottomSpace = false;
-
-        int minWidthToStack = Layout.PAGE_LIST_WIDTH + Layout.INNER_MARGIN * 2 + Layout.OPTION_WIDTH + Layout.OPTION_LIST_SCROLLBAR_OFFSET + Layout.SCROLLBAR_WIDTH + Layout.BUTTON_LONG;
-        int maxWidthToStack = minWidthToStack + Layout.BUTTON_LONG * 2 + Layout.INNER_MARGIN;
-
-        if (w > minWidthToStack && w < maxWidthToStack) {
-            stackVertically = true;
-        } else if (w < minWidthToStack) {
-            reserveBottomSpace = true;
-        }
-
-        this.rebuildActionButtons(stackVertically);
+        this.rebuildActionButtons(false);
 
         this.donateButton = new DonationButtonWidget(this, this::openDonationPage, this::hideDonationButton);
-        // search widget not added — search bar hidden
 
-        var optionListDim = new Dim2i(
-                this.pageList.getLimitX(),
-                y + topBarHeight + Layout.INNER_MARGIN,
-                Layout.OPTION_WIDTH + Layout.OPTION_LIST_SCROLLBAR_OFFSET + Layout.SCROLLBAR_WIDTH,
-                h - topBarHeight - (reserveBottomSpace ? (Layout.INNER_MARGIN * 2 + Layout.BUTTON_SHORT) : Layout.INNER_MARGIN) - this.ifNotInsetY(Layout.INNER_MARGIN)
-        );
-        this.optionList = new OptionListWidget(this, optionListDim, this::onSectionFocused);
+        int optionListX = x + sidebarWidth + Layout.INNER_MARGIN;
+        int optionListY = contentY + Layout.INNER_MARGIN;
+        int optionListW = w - sidebarWidth - Layout.INNER_MARGIN * 2;
+        int optionListH = contentH - Layout.INNER_MARGIN * 2;
+
+        this.optionList = new OptionListWidget(this, new Dim2i(optionListX, optionListY, optionListW, optionListH), this::onSectionFocused);
         this.addRenderableWidget(this.optionList);
 
-        var tooltipAreaY = y + topBarHeight + this.ifInsetY(Layout.TOOLTIP_OUTER_MARGIN);
+        var tooltipAreaY = contentY + Layout.TOOLTIP_OUTER_MARGIN;
         this.tooltip.setTooltipArea(
                 new Dim2i(
                         this.optionList.getLimitX(),
                         tooltipAreaY,
-                        this.getLimitX() - this.optionList.getLimitX() - this.ifNotInsetX(Layout.TOOLTIP_OUTER_MARGIN),
-                        this.getLimitY() - tooltipAreaY - this.ifNotInsetY(Layout.TOOLTIP_OUTER_MARGIN)
+                        this.getLimitX() - this.optionList.getLimitX() - Layout.TOOLTIP_OUTER_MARGIN,
+                        contentH - Layout.TOOLTIP_OUTER_MARGIN * 2
                 )
         );
     }
 
     private void rebuildActionButtons(boolean stackVertically) {
-        int buttonW = Layout.BUTTON_LONG;
-        int buttonH = Layout.BUTTON_SHORT;
-        int closeX = this.getLimitX() - buttonW - this.ifNotInsetX(Layout.INNER_MARGIN);
-        int closeY = this.getLimitY() - (this.ifNotInsetY(Layout.INNER_MARGIN) + buttonH);
+        int buttonW = 65;
+        int buttonH = 18;
 
-        int dx = stackVertically ? 0 : -(Layout.INNER_MARGIN + buttonW);
-        int dy = stackVertically ? -(Layout.INNER_MARGIN + buttonH) : 0;
-        int actionRowX = closeX + dx;
-        int actionRowY = stackVertically ? closeY + dy : this.getLimitY() - (Layout.INNER_MARGIN + buttonH);
+        int bottomY = this.getY() + this.getHeight() - BOTTOM_BAR_HEIGHT + (BOTTOM_BAR_HEIGHT - buttonH) / 2;
 
-        this.closeButton = new KeyBoundButtonWidget(new Dim2i(closeX, closeY, buttonW, buttonH), Component.translatable("gui.done"), this::onClose, true, false, GLFW.GLFW_KEY_D);
-        this.applyButton = new KeyBoundButtonWidget(new Dim2i(actionRowX, actionRowY, buttonW, buttonH), Component.translatable("flexium.options.buttons.apply"), ConfigManager.CONFIG::applyAllOptions, true, false, GLFW.GLFW_KEY_A);
-        this.undoButton = new KeyBoundButtonWidget(new Dim2i(actionRowX + dx, actionRowY + dy, buttonW, buttonH), Component.translatable("flexium.options.buttons.undo"), this::undoChanges, true, false, GLFW.GLFW_KEY_U);
+        int closeX = this.getLimitX() - buttonW - 8;
+        int applyX = closeX - buttonW - 6;
+        int undoX  = applyX - buttonW - 6;
+
+        this.closeButton = new KeyBoundButtonWidget(new Dim2i(closeX, bottomY, buttonW, buttonH), Component.translatable("gui.done"), this::onClose, true, false, GLFW.GLFW_KEY_D);
+        this.applyButton = new KeyBoundButtonWidget(new Dim2i(applyX, bottomY, buttonW, buttonH), Component.translatable("flexium.options.buttons.apply"), ConfigManager.CONFIG::applyAllOptions, true, false, GLFW.GLFW_KEY_A);
+        this.undoButton  = new KeyBoundButtonWidget(new Dim2i(undoX, bottomY, buttonW, buttonH), Component.translatable("flexium.options.buttons.undo"), this::undoChanges, true, false, GLFW.GLFW_KEY_U);
 
         this.addRenderableWidget(this.closeButton);
         this.addRenderableWidget(this.undoButton);
@@ -248,36 +241,10 @@ public class VideoSettingsScreen extends Screen implements ScreenPromptable, Scr
     }
 
     private void updateScreenDimensions() {
-        // size screen to not be too wide
-        var baseContentWidth = Layout.PAGE_LIST_WIDTH + Layout.INNER_MARGIN + Layout.OPTION_WIDTH + Layout.OPTION_LIST_SCROLLBAR_OFFSET + Layout.SCROLLBAR_WIDTH + Layout.TOOLTIP_OUTER_MARGIN;
-        var minContentWidth = baseContentWidth + (Layout.MAX_TOOLTIP_WIDTH - Layout.MIN_TOOLTIP_WIDTH) / 2 + Layout.MIN_TOOLTIP_WIDTH;
-        var maxContentWidth = baseContentWidth + Layout.MAX_TOOLTIP_WIDTH;
-        var maxInterpolatingBorderWidth = 100;
-        var widthInterpolationStart = minContentWidth + Layout.CONTENT_BORDER_MIN_WIDTH;
-        var widthInterpolationEnd = maxContentWidth + maxInterpolatingBorderWidth;
+        // Size modal window generously to fit options panel cleanly
+        int contentWidth = Math.min(this.width - 20, 680);
+        int contentHeight = Math.min(this.height - 20, 420);
 
-        int contentWidth = this.width;
-        this.insetX = false;
-        if (this.width > minContentWidth + Layout.CONTENT_BORDER_MIN_WIDTH) {
-            // interpolate between min and max content width based on current width
-            if (this.width < widthInterpolationEnd) {
-                float t = (float) (this.width - widthInterpolationStart) / (widthInterpolationEnd - widthInterpolationStart);
-                contentWidth = minContentWidth + (int) (t * (maxContentWidth - minContentWidth));
-            } else {
-                contentWidth = maxContentWidth;
-            }
-            this.insetX = true;
-        }
-
-        // for height, it's the other way around. there's a maximum border height
-        int contentHeight = this.height;
-        this.insetY = false;
-        if (this.height > Layout.CONTENT_MIN_HEIGHT + Layout.CONTENT_BORDER_HEIGHT && this.insetX) {
-            contentHeight = this.height - Layout.CONTENT_BORDER_HEIGHT;
-            this.insetY = true;
-        }
-
-        // center the content area
         this.dim = new Dim2i(
                 (this.width - contentWidth) / 2,
                 (this.height - contentHeight) / 2,
@@ -332,29 +299,26 @@ public class VideoSettingsScreen extends Screen implements ScreenPromptable, Scr
         int winW = this.dim.width();
         int winH = this.dim.height();
 
-        int sidebarW = Layout.PAGE_LIST_WIDTH;
-        int headerH   = 36;
-        int bottomBarH = 32;
+        int sidebarW   = Layout.PAGE_LIST_WIDTH;
+        int headerH    = HEADER_HEIGHT;
+        int bottomBarH = BOTTOM_BAR_HEIGHT;
 
-        // ── Main dark background ─────────────────────────────────────────────
+        // ── Main dark frame background ─────────────────────────────────────────
         graphics.fill(winX, winY, winX + winW, winY + winH, 0xFF151518);
 
         // ── Top header bar ───────────────────────────────────────────────────
         graphics.fill(winX, winY, winX + winW, winY + headerH, Colors.HEADER_BG);
-        // thin purple accent line under header
         graphics.fill(winX, winY + headerH - 1, winX + winW, winY + headerH, 0x50AB94E4);
 
         // ── Left sidebar background ───────────────────────────────────────────
         graphics.fill(winX, winY + headerH, winX + sidebarW, winY + winH - bottomBarH, Colors.SIDEBAR_BG);
-        // thin right border of sidebar
         graphics.fill(winX + sidebarW, winY + headerH, winX + sidebarW + 1, winY + winH - bottomBarH, 0x40AB94E4);
 
-        // ── Main content area ─────────────────────────────────────────────────
+        // ── Main content area background ─────────────────────────────────────
         graphics.fill(winX + sidebarW + 1, winY + headerH, winX + winW, winY + winH - bottomBarH, Colors.PANEL_BG);
 
         // ── Bottom action bar ─────────────────────────────────────────────────
         graphics.fill(winX, winY + winH - bottomBarH, winX + winW, winY + winH, Colors.BOTTOM_BAR_BG);
-        // thin top border of bottom bar
         graphics.fill(winX, winY + winH - bottomBarH, winX + winW, winY + winH - bottomBarH + 1, 0x40AB94E4);
 
         // ── "Made with performance in mind ♦" tagline ─────────────────────────
@@ -362,30 +326,29 @@ public class VideoSettingsScreen extends Screen implements ScreenPromptable, Scr
         graphics.text(this.font, Component.literal("Made with performance in mind. \u2666"), winX + 12, taglineY, 0x80AB94E4);
 
         // ── Header: brushy F logo ──────────────────────────────────────────────
-        // Draw a small purple diamond/logo box then "F" text
         int logoBoxX = winX + 10;
         int logoBoxY = winY + (headerH - 20) / 2;
         graphics.fill(logoBoxX, logoBoxY, logoBoxX + 22, logoBoxY + 20, 0xFF5D2E8E);
         graphics.fill(logoBoxX + 1, logoBoxY + 1, logoBoxX + 21, logoBoxY + 19, 0xFF7040B8);
-        // "F" letter centered in the box
         int fX = logoBoxX + (22 - this.font.width("F")) / 2;
         int fY = logoBoxY + (20 - this.font.lineHeight) / 2;
         graphics.text(this.font, Component.literal("F"), fX, fY, 0xFFFFFFFF);
 
-        // ── Header: "FLEXIUM" bold white + version badge ──────────────────────
-        int titleX = logoBoxX + 26;
-        int titleBaseY = winY + (headerH - this.font.lineHeight * 2 - 2) / 2;
-        graphics.text(this.font, Component.literal("FLEXIUM"), titleX, titleBaseY, 0xFFFFFFFF);
-        // version badge "1.0.0"
-        int verBadgeX = titleX + this.font.width("FLEXIUM") + 5;
-        int verBadgeY = titleBaseY - 1;
-        graphics.fill(verBadgeX, verBadgeY, verBadgeX + this.font.width("1.0.0") + 6, verBadgeY + this.font.lineHeight + 2, 0xFF2E2E3A);
-        graphics.text(this.font, Component.literal("1.0.0"), verBadgeX + 3, verBadgeY + 1, 0xFFAB94E4);
-        // subtitle "Optimization Mod"
-        graphics.text(this.font, Component.literal("Optimization Mod"), titleX, titleBaseY + this.font.lineHeight + 2, 0xFF8870C8);
+        // ── Header: single-line title layout (FLEXIUM 1.0.0 Optimization Mod) ─
+        int titleX = logoBoxX + 28;
+        int titleY = winY + (headerH - this.font.lineHeight) / 2;
 
-        // ── Header: close "X" button ──────────────────────────────────────────
-        int closeXx = winX + winW - 20;
+        graphics.text(this.font, Component.literal("FLEXIUM"), titleX, titleY, 0xFFFFFFFF);
+
+        int verBadgeX = titleX + this.font.width("FLEXIUM") + 6;
+        graphics.fill(verBadgeX, titleY - 1, verBadgeX + this.font.width("1.0.0") + 6, titleY + this.font.lineHeight + 1, 0xFF2E2E3A);
+        graphics.text(this.font, Component.literal("1.0.0"), verBadgeX + 3, titleY, 0xFFAB94E4);
+
+        int subX = verBadgeX + this.font.width("1.0.0") + 12;
+        graphics.text(this.font, Component.literal("Optimization Mod"), subX, titleY, 0xFF8870C8);
+
+        // ── Header: close "×" button ──────────────────────────────────────────
+        int closeXx = winX + winW - 18;
         int closeXy = winY + (headerH - this.font.lineHeight) / 2;
         graphics.text(this.font, Component.literal("\u00D7"), closeXx, closeXy, 0xFF888898);
 

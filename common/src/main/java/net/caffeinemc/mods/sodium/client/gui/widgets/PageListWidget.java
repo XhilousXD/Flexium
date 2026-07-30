@@ -50,14 +50,8 @@ public class PageListWidget extends AbstractScrollable {
 
             var theme = modOptions.theme();
 
-            // spacing above the mod title
-            listHeight += Layout.TEXT_LINE_SPACING;
-            var headerDim = new Dim2i(x, y + listHeight, width, headerHeight);
-            var modHeaderStart = headerDim.y();
-            CenteredFlatWidget header = new HeaderEntryWidget(headerDim, modOptions, theme);
-            listHeight += headerHeight;
-
-            this.addRenderableChild(header);
+            // list pages directly without duplicate mod header text in sidebar
+            var modHeaderStart = -1;
 
             for (Page page : modOptions.pages()) {
                 PageEntryWidget<?> pageWidget;
