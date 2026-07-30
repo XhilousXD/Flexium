@@ -141,7 +141,11 @@ public class SodiumConfigBuilder implements ConfigEntryPoint {
                 .addPage(this.buildQualityPage(builder))
                 .addPage(this.buildPerformancePage(builder))
                 .addPage(this.buildAdvancedPage(builder))
-                .addPage(this.buildVulkanGpuPage(builder));
+                .addPage(this.buildVulkanGpuPage(builder))
+                .addPage(this.buildAnimationsPage(builder))
+                .addPage(this.buildParticlesPage(builder))
+                .addPage(this.buildDetailsPage(builder))
+                .addPage(this.buildExtraPage(builder));
     }
 
     private OptionPageBuilder buildGeneralPage(ConfigBuilder builder) {
@@ -757,6 +761,109 @@ public class SodiumConfigBuilder implements ConfigEntryPoint {
                 )
         );
         return vulkanPage;
+    }
+
+    private OptionPageBuilder buildAnimationsPage(ConfigBuilder builder) {
+        var page = builder.createOptionPage().setName(Component.translatable("flexium.options.pages.animations"));
+        page.addOptionGroup(builder.createOptionGroup()
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:animations.water"))
+                        .setName(Component.translatable("flexium.option.animate_water"))
+                        .setTooltip(Component.translatable("flexium.option.animate_water.tooltip"))
+                        .setDefaultValue(true)
+                        .setBinding(v -> {}, () -> true))
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:animations.lava"))
+                        .setName(Component.translatable("flexium.option.animate_lava"))
+                        .setTooltip(Component.translatable("flexium.option.animate_lava.tooltip"))
+                        .setDefaultValue(true)
+                        .setBinding(v -> {}, () -> true))
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:animations.fire"))
+                        .setName(Component.translatable("flexium.option.animate_fire"))
+                        .setTooltip(Component.translatable("flexium.option.animate_fire.tooltip"))
+                        .setDefaultValue(true)
+                        .setBinding(v -> {}, () -> true))
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:animations.portal"))
+                        .setName(Component.translatable("flexium.option.animate_portal"))
+                        .setTooltip(Component.translatable("flexium.option.animate_portal.tooltip"))
+                        .setDefaultValue(true)
+                        .setBinding(v -> {}, () -> true))
+        );
+        return page;
+    }
+
+    private OptionPageBuilder buildParticlesPage(ConfigBuilder builder) {
+        var page = builder.createOptionPage().setName(Component.translatable("flexium.options.pages.particles"));
+        page.addOptionGroup(builder.createOptionGroup()
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:particles.all"))
+                        .setName(Component.translatable("flexium.option.particles_all"))
+                        .setTooltip(Component.translatable("flexium.option.particles_all.tooltip"))
+                        .setDefaultValue(true)
+                        .setBinding(v -> {}, () -> true))
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:particles.rain_splash"))
+                        .setName(Component.translatable("flexium.option.rain_splash"))
+                        .setTooltip(Component.translatable("flexium.option.rain_splash.tooltip"))
+                        .setDefaultValue(true)
+                        .setBinding(v -> {}, () -> true))
+        );
+        return page;
+    }
+
+    private OptionPageBuilder buildDetailsPage(ConfigBuilder builder) {
+        var page = builder.createOptionPage().setName(Component.translatable("flexium.options.pages.details"));
+        page.addOptionGroup(builder.createOptionGroup()
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:details.sky"))
+                        .setName(Component.translatable("flexium.option.sky"))
+                        .setTooltip(Component.translatable("flexium.option.sky.tooltip"))
+                        .setDefaultValue(true)
+                        .setBinding(v -> {}, () -> true))
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:details.sun"))
+                        .setName(Component.translatable("flexium.option.sun"))
+                        .setTooltip(Component.translatable("flexium.option.sun.tooltip"))
+                        .setDefaultValue(true)
+                        .setBinding(v -> {}, () -> true))
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:details.moon"))
+                        .setName(Component.translatable("flexium.option.moon"))
+                        .setTooltip(Component.translatable("flexium.option.moon.tooltip"))
+                        .setDefaultValue(true)
+                        .setBinding(v -> {}, () -> true))
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:details.stars"))
+                        .setName(Component.translatable("flexium.option.stars"))
+                        .setTooltip(Component.translatable("flexium.option.stars.tooltip"))
+                        .setDefaultValue(true)
+                        .setBinding(v -> {}, () -> true))
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:details.rain_snow"))
+                        .setName(Component.translatable("flexium.option.rain_snow"))
+                        .setTooltip(Component.translatable("flexium.option.rain_snow.tooltip"))
+                        .setDefaultValue(true)
+                        .setBinding(v -> {}, () -> true))
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:details.global_fog"))
+                        .setName(Component.translatable("flexium.option.global_fog"))
+                        .setTooltip(Component.translatable("flexium.option.global_fog.tooltip"))
+                        .setDefaultValue(true)
+                        .setBinding(v -> {}, () -> true))
+        );
+        return page;
+    }
+
+    private OptionPageBuilder buildExtraPage(ConfigBuilder builder) {
+        var page = builder.createOptionPage().setName(Component.translatable("flexium.options.pages.extra"));
+        page.addOptionGroup(builder.createOptionGroup()
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:extra.show_fps"))
+                        .setName(Component.translatable("flexium.option.show_fps"))
+                        .setTooltip(Component.translatable("flexium.option.show_fps.tooltip"))
+                        .setDefaultValue(true)
+                        .setBinding(v -> {}, () -> true))
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:extra.show_coordinates"))
+                        .setName(Component.translatable("flexium.option.show_coordinates"))
+                        .setTooltip(Component.translatable("flexium.option.show_coordinates.tooltip"))
+                        .setDefaultValue(false)
+                        .setBinding(v -> {}, () -> false))
+                .addOption(builder.createBooleanOption(Identifier.parse("flexium:extra.instant_sneak"))
+                        .setName(Component.translatable("flexium.option.instant_sneak"))
+                        .setTooltip(Component.translatable("flexium.option.instant_sneak.tooltip"))
+                        .setDefaultValue(false)
+                        .setBinding(v -> {}, () -> false))
+        );
+        return page;
     }
 
 }
