@@ -19,27 +19,27 @@ public class Layout {
     public static final int TEXT_LINE_SPACING = 2;
     public static final int REGULAR_TEXT_BASELINE_OFFSET = -4;
 
-    public static final int PAGE_LIST_WIDTH = 125;
+    public static final int PAGE_LIST_WIDTH = 160;  // wider sidebar
 
-    public static final int OPTION_WIDTH = 210;
+    public static final int OPTION_WIDTH = 310;  // wider options panel
     public static final int OPTION_LIST_SCROLLBAR_OFFSET = 5;
-    public static final int OPTION_TEXT_SIDE_PADDING = 6;
+    public static final int OPTION_TEXT_SIDE_PADDING = 8;
     public static final int OPTION_LABEL_END_PADDING = 20;
 
-    public static final int TICKBOX_CONTROL_WIDTH = 30;
-    public static final int CYCLING_CONTROL_WIDTH = 70;
-    public static final int SLIDER_WIDTH = 90;
+    public static final int TICKBOX_CONTROL_WIDTH = 50;
+    public static final int CYCLING_CONTROL_WIDTH = 100;  // wider dropdowns
+    public static final int SLIDER_WIDTH = 120;  // wider sliders
     public static final int SLIDER_HEIGHT = 10;
 
     public static final int ICON_MARGIN = 4;
     public static final int ICON_TEXT_BASELINE_OFFSET = -3;
     public static final int CONTROL_ICON_SIZE = 10;
 
-    public static final int MIN_TOOLTIP_WIDTH = 100;
-    public static final int MAX_TOOLTIP_WIDTH = 200;
+    public static final int MIN_TOOLTIP_WIDTH = 140;
+    public static final int MAX_TOOLTIP_WIDTH = 260;
     public static final int TOOLTIP_OUTER_MARGIN = 3;
 
-    public static final int CONTENT_BORDER_MIN_WIDTH = 100;
+    public static final int CONTENT_BORDER_MIN_WIDTH = 140;
     public static final int CONTENT_BORDER_HEIGHT = OPTION_MOD_MARGIN;
     public static final int CONTENT_MIN_HEIGHT = 300;
 
