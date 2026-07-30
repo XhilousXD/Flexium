@@ -58,6 +58,7 @@
     "features.gui.hooks.debug.MinecraftRenderFrameMixin",
     "features.gui.hooks.debug.DebugScreenOverlayMixin",
     "features.gui.hooks.settings.OptionsScreenMixin",
+    "features.gui.hooks.settings.SiriusTitleScreenMixin",
     "features.render.entity.CubeMixin",
     "features.render.entity.ModelPartMixin",
     "features.render.entity.cull.EntityRendererMixin",
