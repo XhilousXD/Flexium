@@ -180,8 +180,10 @@ public class VideoSettingsScreen extends Screen implements ScreenPromptable, Scr
         var w = this.getWidth();
         var h = this.getHeight();
 
-        int topBarHeight = Layout.BUTTON_SHORT;
-        this.searchWidget = new SearchWidget(this::onSearchResults, new Dim2i(x, y, w, topBarHeight));
+        // Search bar removed — topBarHeight = 0
+        int topBarHeight = 0;
+        this.searchWidget = new SearchWidget(this::onSearchResults, new Dim2i(x, y, w, Layout.BUTTON_SHORT));
+        // searchWidget intentionally not added as renderable
 
         int topBarClear = topBarHeight + this.ifInsetY(Layout.INNER_MARGIN);
         this.pageList = new PageListWidget(new Dim2i(x, y + topBarClear, Layout.PAGE_LIST_WIDTH, h - topBarClear), this);
@@ -202,8 +204,7 @@ public class VideoSettingsScreen extends Screen implements ScreenPromptable, Scr
         this.rebuildActionButtons(stackVertically);
 
         this.donateButton = new DonationButtonWidget(this, this::openDonationPage, this::hideDonationButton);
-        this.addRenderableWidget(this.searchWidget);
-        this.updateSearchWidgetWidth();
+        // search widget not added — search bar hidden
 
         var optionListDim = new Dim2i(
                 this.pageList.getLimitX(),
