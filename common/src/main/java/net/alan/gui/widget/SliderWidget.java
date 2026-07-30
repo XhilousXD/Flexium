@@ -86,7 +86,7 @@ public class SliderWidget extends BaseWidget {
         // 轨道
         String trackTex = getTrackSprite();
         if (trackTex != null && !trackTex.isEmpty()) {
-            var id = Identifier.tryParse(trackTex);
+            var id = net.alan.gui.util.TextureUtil.resolveTextureId(trackTex);
             if (id != null) {
                 
                 }
@@ -99,7 +99,7 @@ public class SliderWidget extends BaseWidget {
         int handleX = screenX + (int) (currentRatio * (dim.w - HANDLE_WIDTH));
         String handleTex = getHandleSprite();
         if (handleTex != null && !handleTex.isEmpty()) {
-            var id = Identifier.tryParse(handleTex);
+            var id = net.alan.gui.util.TextureUtil.resolveTextureId(handleTex);
             if (id != null) {
                 
                 }

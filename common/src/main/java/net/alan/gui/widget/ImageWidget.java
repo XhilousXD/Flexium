@@ -33,7 +33,7 @@ public class ImageWidget extends BaseWidget {
         String normal = evalStringExpr(vars, style.texture().getNormal());
         if (normal == null || normal.isEmpty()) return;
 
-        Identifier id = Identifier.tryParse(normal);
+        Identifier id = net.alan.gui.util.TextureUtil.resolveTextureId(normal);
         if (id == null) return;
         graphics.blit(RenderPipelines.GUI_TEXTURED, id, screenX, screenY, 0, 0, dim.w, dim.h, dim.w, dim.h);
     }

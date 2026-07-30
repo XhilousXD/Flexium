@@ -171,7 +171,7 @@ public class ListWidget extends BaseWidget {
     private void renderBackground(GuiGraphicsExtractor graphics, int listX, int listY, int listW, int listH, RenderContext ctx) {
         TextureSet bgTex = props.backgroundTexture();
         if (bgTex != null && bgTex.getNormal() != null) {
-            Identifier tex = Identifier.tryParse(bgTex.getNormal());
+            Identifier tex = net.alan.gui.util.TextureUtil.resolveTextureId(bgTex.getNormal());
             if (tex != null) {
                 return;
             }
@@ -226,7 +226,7 @@ public class ListWidget extends BaseWidget {
 
     private void renderScrollPart(GuiGraphicsExtractor graphics, int x, int y, int w, int h, TextureSet tex, String color, int defaultColor) {
         if (tex != null && tex.getNormal() != null) {
-            Identifier rl = Identifier.tryParse(tex.getNormal());
+            Identifier rl = net.alan.gui.util.TextureUtil.resolveTextureId(tex.getNormal());
             if (rl != null) {
                 return;
             }

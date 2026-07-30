@@ -104,7 +104,7 @@ public class CycleButtonWidget extends BaseWidget {
         // 背景纹理
         String texPath = getSprite();
         if (texPath != null && !texPath.isEmpty()) {
-            var id = Identifier.tryParse(texPath);
+            var id = net.alan.gui.util.TextureUtil.resolveTextureId(texPath);
             if (id != null) {
                 
                 }

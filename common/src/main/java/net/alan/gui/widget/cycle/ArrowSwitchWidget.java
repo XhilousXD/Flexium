@@ -157,7 +157,7 @@ public class ArrowSwitchWidget extends BaseWidget {
     private void renderButton(GuiGraphicsExtractor graphics, int x, int y, int w, int h, TextureSet tex, int partIndex) {
         String texPath = getTexturePath(tex, partIndex == hoveredPart);
         if (texPath != null && !texPath.isEmpty()) {
-            var id = Identifier.tryParse(texPath);
+            var id = net.alan.gui.util.TextureUtil.resolveTextureId(texPath);
             if (id != null) {
                 
                 }

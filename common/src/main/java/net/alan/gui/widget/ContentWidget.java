@@ -66,7 +66,7 @@ public class ContentWidget extends BaseWidget {
         int cy = y + dim.y;
 
         if (backgroundTexture != null && backgroundTexture.getNormal() != null) {
-            var texId = Identifier.tryParse(backgroundTexture.getNormal());
+            var texId = net.alan.gui.util.TextureUtil.resolveTextureId(backgroundTexture.getNormal());
             if (texId != null) {
                 }
         } else if (backgroundColor != null && !backgroundColor.isEmpty()) {
@@ -150,7 +150,7 @@ public class ContentWidget extends BaseWidget {
 
         ListProps.TrackDef track = scrollbar.track();
         if (track.texture() != null && track.texture().getNormal() != null) {
-            var texId = Identifier.tryParse(track.texture().getNormal());
+            var texId = net.alan.gui.util.TextureUtil.resolveTextureId(track.texture().getNormal());
             if (texId != null) {
                 }
         } else if (track.color() != null) {
@@ -164,7 +164,7 @@ public class ContentWidget extends BaseWidget {
         int thumbY = cy + (int) ((scrollAmount / maxScroll) * (ch - thumbH));
 
         if (thumb.texture() != null && thumb.texture().getNormal() != null) {
-            var texId = Identifier.tryParse(thumb.texture().getNormal());
+            var texId = net.alan.gui.util.TextureUtil.resolveTextureId(thumb.texture().getNormal());
             if (texId != null) {
                 }
         } else if (thumb.color() != null) {
@@ -181,7 +181,7 @@ public class ContentWidget extends BaseWidget {
 
         ListProps.TrackDef track = scrollbar.track();
         if (track.texture() != null && track.texture().getNormal() != null) {
-            var texId = Identifier.tryParse(track.texture().getNormal());
+            var texId = net.alan.gui.util.TextureUtil.resolveTextureId(track.texture().getNormal());
             if (texId != null) {
                 }
         } else if (track.color() != null) {
@@ -195,7 +195,7 @@ public class ContentWidget extends BaseWidget {
         int thumbX = cx + (int) ((scrollAmount / maxScroll) * (cw - thumbW));
 
         if (thumb.texture() != null && thumb.texture().getNormal() != null) {
-            var texId = Identifier.tryParse(thumb.texture().getNormal());
+            var texId = net.alan.gui.util.TextureUtil.resolveTextureId(thumb.texture().getNormal());
             if (texId != null) {
                 }
         } else if (thumb.color() != null) {
@@ -226,7 +226,7 @@ public class ContentWidget extends BaseWidget {
 
     private void renderScrollPart(GuiGraphicsExtractor graphics, int x, int y, int w, int h, TextureSet tex, String color, int defaultColor) {
         if (tex != null && tex.getNormal() != null) {
-            Identifier rl = Identifier.tryParse(tex.getNormal());
+            Identifier rl = net.alan.gui.util.TextureUtil.resolveTextureId(tex.getNormal());
             if (rl != null) {
                 return;
             }

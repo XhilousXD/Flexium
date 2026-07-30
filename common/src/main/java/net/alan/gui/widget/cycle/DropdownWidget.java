@@ -209,7 +209,7 @@ public class DropdownWidget extends BaseWidget {
     private void renderMainButton(GuiGraphicsExtractor graphics, int x, int y, int w, int h) {
         String texPath = getTexturePath(buttonTexture, false);
         if (texPath != null && !texPath.isEmpty()) {
-            var id = Identifier.tryParse(texPath);
+            var id = net.alan.gui.util.TextureUtil.resolveTextureId(texPath);
             if (id != null) {
                 
                 }
@@ -223,7 +223,7 @@ public class DropdownWidget extends BaseWidget {
         if (dropdownTexture != null) {
             String texPath = dropdownTexture.getNormal();
             if (texPath != null && !texPath.isEmpty()) {
-                var id = Identifier.tryParse(texPath);
+                var id = net.alan.gui.util.TextureUtil.resolveTextureId(texPath);
                 if (id != null) {
                     
                     }
@@ -238,7 +238,7 @@ public class DropdownWidget extends BaseWidget {
         if (tex != null) {
             String texPath = hovered ? tex.getHighlighted() : tex.getNormal();
             if (texPath != null && !texPath.isEmpty()) {
-                var id = Identifier.tryParse(texPath);
+                var id = net.alan.gui.util.TextureUtil.resolveTextureId(texPath);
                 if (id != null) {
                     
                     }

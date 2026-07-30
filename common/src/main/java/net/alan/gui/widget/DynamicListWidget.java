@@ -245,7 +245,7 @@ public class DynamicListWidget extends BaseWidget {
                 }
 
                 if (rowStyle != null && rowStyle.background_texture != null) {
-                    Identifier tex = Identifier.tryParse(rowStyle.background_texture);
+                    Identifier tex = net.alan.gui.util.TextureUtil.resolveTextureId(rowStyle.background_texture);
                     if (tex != null) {
                         graphics.blit(tex, listX, rowTop, dim.w, rowHeight, 0.0f, 0.0f, 1.0f, 1.0f);
                     }

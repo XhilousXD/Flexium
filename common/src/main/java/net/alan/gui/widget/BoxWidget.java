@@ -117,7 +117,7 @@ public class BoxWidget extends BaseWidget {
 
         // 渲染框架纹理
         if (frameTexture != null && frameTexture.getNormal() != null) {
-            var texId = Identifier.tryParse(frameTexture.getNormal());
+            var texId = net.alan.gui.util.TextureUtil.resolveTextureId(frameTexture.getNormal());
             if (texId != null) {
                 
                 }

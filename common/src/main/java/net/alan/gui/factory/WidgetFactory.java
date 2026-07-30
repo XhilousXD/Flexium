@@ -746,7 +746,7 @@ public class WidgetFactory {
 
     private static Widget loadWidgetFromRef(String ref, ResourceManager manager, ActionExecutor executor, JsonObject override) {
         try {
-            net.minecraft.resources.Identifier resLoc = net.minecraft.resources.Identifier.tryParse(ref);
+            net.minecraft.resources.Identifier resLoc = net.alan.gui.util.TextureUtil.resolveTextureId(ref);
             if (resLoc == null) {
                 LOGGER.warn("Invalid widget reference: {}", ref);
                 return null;

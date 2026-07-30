@@ -96,7 +96,7 @@ public class PptBackgroundRenderer implements AutoCloseable {
             graphics.fill(0, 0, screenWidth, screenHeight, 0xFF000000);
             return;
         }
-        Identifier textureId = Identifier.tryParse(texturePath);
+        Identifier textureId = net.alan.gui.util.TextureUtil.resolveTextureId(texturePath);
         if (textureId == null) {
             graphics.fill(0, 0, screenWidth, screenHeight, 0xFF000000);
             return;
@@ -226,7 +226,7 @@ public class PptBackgroundRenderer implements AutoCloseable {
         if (slideIndex < slides.size()) {
             Slide cur = slides.get(slideIndex);
             if (cur.getTexture() != null && !cur.getTexture().isEmpty()) {
-                previousTexture = Identifier.tryParse(cur.getTexture());
+                previousTexture = net.alan.gui.util.TextureUtil.resolveTextureId(cur.getTexture());
             }
         }
 

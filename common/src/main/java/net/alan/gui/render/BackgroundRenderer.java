@@ -45,7 +45,7 @@ public class BackgroundRenderer {
                     String path = evalStringExpr(rawPath, screenWidth, screenHeight);
                     if (path != null && !path.isEmpty()) {
                         try {
-                            Identifier id = Identifier.tryParse(path);
+                            Identifier id = net.alan.gui.util.TextureUtil.resolveTextureId(path);
                             if (id != null) renderScaled(graphics, id, screenWidth, screenHeight);
                         } catch (Exception e) {
                             LOGGER.error("Failed to render image background {}: {}", path, e.getMessage());

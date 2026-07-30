@@ -145,7 +145,7 @@ public class ButtonWidget extends BaseWidget {
             else if (isHovered) texPath = evalStringExpr(vars, style.texture().getHighlighted());
             else texPath = evalStringExpr(vars, style.texture().getNormal());
             if (texPath != null && !texPath.isEmpty()) {
-                var texId = Identifier.tryParse(texPath);
+                var texId = net.alan.gui.util.TextureUtil.resolveTextureId(texPath);
                 if (texId != null) {
                     graphics.blit(RenderPipelines.GUI_TEXTURED, texId, screenX, screenY, 0, 0, dim.w, dim.h, dim.w, dim.h);
                 }
