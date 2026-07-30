@@ -8,6 +8,7 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
+import net.minecraft.client.gui.screens.options.OptionsScreen;
 import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Util;
@@ -27,25 +28,25 @@ public abstract class TitleScreenMixin extends Screen {
         this.clearWidgets();
 
         int centerW = 220;
-        int centerH = 24;
+        int centerH = 22;
         int centerX = (this.width - centerW) / 2;
-        int startY = 120;
-        int spacing = 28;
+        int startY = 118;
+        int spacing = 26;
 
         // ── Main Menu Buttons (Center Stack) ──────────────────────────────────
-        this.addRenderableWidget(Button.builder(Component.literal("\uD83F\uDC64  Singleplayer"), b -> {
+        this.addRenderableWidget(Button.builder(Component.literal("Singleplayer"), b -> {
             if (this.minecraft != null) {
                 this.minecraft.setScreen(new SelectWorldScreen(this));
             }
         }).bounds(centerX, startY, centerW, centerH).build());
 
-        this.addRenderableWidget(Button.builder(Component.literal("\uD83F\uDC65  Multiplayer"), b -> {
+        this.addRenderableWidget(Button.builder(Component.literal("Multiplayer"), b -> {
             if (this.minecraft != null) {
                 this.minecraft.setScreen(new JoinMultiplayerScreen(this));
             }
         }).bounds(centerX, startY + spacing, centerW, centerH).build());
 
-        this.addRenderableWidget(Button.builder(Component.literal("\uD83D\uDCDC  Minecraft Realms"), b -> {
+        this.addRenderableWidget(Button.builder(Component.literal("Minecraft Realms"), b -> {
             if (this.minecraft != null) {
                 this.minecraft.setScreen(new JoinMultiplayerScreen(this));
             }
@@ -53,69 +54,69 @@ public abstract class TitleScreenMixin extends Screen {
 
         // Side-by-side bottom center buttons
         int halfW = (centerW - 6) / 2;
-        this.addRenderableWidget(Button.builder(Component.literal("\u2699  Options..."), b -> {
+        this.addRenderableWidget(Button.builder(Component.literal("Options..."), b -> {
             if (this.minecraft != null) {
-                this.minecraft.setScreen(VideoSettingsScreen.createScreen(this));
+                this.minecraft.setScreen(new OptionsScreen(this, this.minecraft.options, false));
             }
         }).bounds(centerX, startY + spacing * 3, halfW, centerH).build());
 
-        this.addRenderableWidget(Button.builder(Component.literal("\u23FB  Quit Game"), b -> {
+        this.addRenderableWidget(Button.builder(Component.literal("Quit Game"), b -> {
             if (this.minecraft != null) {
                 this.minecraft.stop();
             }
         }).bounds(centerX + halfW + 6, startY + spacing * 3, halfW, centerH).build());
 
         // ── Top Right Action Nav Buttons ──────────────────────────────────────
-        int navW = 85;
-        int navH = 20;
+        int navW = 80;
+        int navH = 18;
         int navY = 7;
-        int navRightX = this.width - 12;
+        int navRightX = this.width - 10;
 
-        int quitX = navRightX - 75;
-        this.addRenderableWidget(Button.builder(Component.literal("\u23FB Quit Game"), b -> {
+        int quitX = navRightX - 70;
+        this.addRenderableWidget(Button.builder(Component.literal("Quit Game"), b -> {
             if (this.minecraft != null) this.minecraft.stop();
-        }).bounds(quitX, navY, 75, navH).build());
+        }).bounds(quitX, navY, 70, navH).build());
 
-        int profileX = quitX - navW - 6;
-        this.addRenderableWidget(Button.builder(Component.literal("\uD83F\uDC64 Profile"), b -> {}).bounds(profileX, navY, navW, navH).build());
+        int profileX = quitX - navW - 4;
+        this.addRenderableWidget(Button.builder(Component.literal("Profile"), b -> {}).bounds(profileX, navY, navW, navH).build());
 
-        int settingsX = profileX - navW - 6;
-        this.addRenderableWidget(Button.builder(Component.literal("\u2699 Settings"), b -> {
+        int settingsX = profileX - navW - 4;
+        this.addRenderableWidget(Button.builder(Component.literal("Settings"), b -> {
             if (this.minecraft != null) {
                 this.minecraft.setScreen(VideoSettingsScreen.createScreen(this));
             }
         }).bounds(settingsX, navY, navW, navH).build());
 
-        int modMenuX = settingsX - navW - 6;
-        this.addRenderableWidget(Button.builder(Component.literal("\u229E Mod Menu"), b -> {
+        int modMenuX = settingsX - navW - 4;
+        this.addRenderableWidget(Button.builder(Component.literal("Mod Menu"), b -> {
             if (this.minecraft != null) {
                 this.minecraft.setScreen(VideoSettingsScreen.createScreen(this));
             }
         }).bounds(modMenuX, navY, navW, navH).build());
 
         // ── Bottom Social Buttons ─────────────────────────────────────────────
-        int socialW = 28;
-        int socialH = 20;
-        int socialY = this.height - 24;
-        int socialCenterX = (this.width - (socialW * 3 + 12)) / 2;
+        int socialW = 40;
+        int socialH = 18;
+        int socialY = this.height - 23;
+        int socialCenterX = (this.width - (socialW * 3 + 8)) / 2;
 
-        this.addRenderableWidget(Button.builder(Component.literal("\uD83D\uDCAC"), b -> {
+        this.addRenderableWidget(Button.builder(Component.literal("Discord"), b -> {
             Util.getPlatform().openUri("https://caffeinemc.net/discord");
         }).bounds(socialCenterX, socialY, socialW, socialH).build());
 
-        this.addRenderableWidget(Button.builder(Component.literal("\uD83D\uDC19"), b -> {
+        this.addRenderableWidget(Button.builder(Component.literal("GitHub"), b -> {
             Util.getPlatform().openUri("https://github.com/XhilousXD/Flexium");
-        }).bounds(socialCenterX + socialW + 6, socialY, socialW, socialH).build());
+        }).bounds(socialCenterX + socialW + 4, socialY, socialW, socialH).build());
 
-        this.addRenderableWidget(Button.builder(Component.literal("\uD83C\uDF10"), b -> {
+        this.addRenderableWidget(Button.builder(Component.literal("Web"), b -> {
             Util.getPlatform().openUri("https://modrinth.com/mod/flexium");
-        }).bounds(socialCenterX + (socialW + 6) * 2, socialY, socialW, socialH).build());
+        }).bounds(socialCenterX + (socialW + 4) * 2, socialY, socialW, socialH).build());
 
         // ── Open Changelog Button ─────────────────────────────────────────────
-        this.addRenderableWidget(Button.builder(Component.literal("\uD83D\uDCC4 Open Changelog"), b -> {}).bounds(16, 260, 120, 20).build());
+        this.addRenderableWidget(Button.builder(Component.literal("Open Changelog"), b -> {}).bounds(14, 232, 148, 18).build());
 
         // ── Check for Updates Button ──────────────────────────────────────────
-        this.addRenderableWidget(Button.builder(Component.literal("\uD83D\uDD04 Check for Updates \u25CF"), b -> {}).bounds(this.width - 145, socialY, 135, socialH).build());
+        this.addRenderableWidget(Button.builder(Component.literal("Check for Updates \u25CF"), b -> {}).bounds(this.width - 138, socialY, 130, socialH).build());
     }
 
     private void drawBorder(GuiGraphicsExtractor graphics, int x, int y, int w, int h, int color) {
@@ -128,7 +129,7 @@ public abstract class TitleScreenMixin extends Screen {
     @Inject(method = "extractRenderState", at = @At("HEAD"))
     private void onExtractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         int headerH = 34;
-        int bottomBarH = 28;
+        int bottomBarH = 26;
 
         // ── Top Header Bar ───────────────────────────────────────────────────
         graphics.fill(0, 0, this.width, headerH, Colors.HEADER_BG);
@@ -157,23 +158,23 @@ public abstract class TitleScreenMixin extends Screen {
 
         // ── Left Card 1: FLEXIUM STATUS ───────────────────────────────────────
         int cardX = 14;
-        int cardY = headerH + 10;
-        int cardW = 160;
-        int card1H = 92;
+        int cardY = headerH + 8;
+        int cardW = 148;
+        int card1H = 78;
 
         graphics.fill(cardX, cardY, cardX + cardW, cardY + card1H, 0xD01C1C22);
         this.drawBorder(graphics, cardX, cardY, cardW, card1H, 0x603C3C48);
 
-        graphics.text(this.font, Component.literal("\u26A1 FLEXIUM STATUS"), cardX + 8, cardY + 6, 0xFFAB94E4);
+        graphics.text(this.font, Component.literal("FLEXIUM STATUS"), cardX + 6, cardY + 5, 0xFFAB94E4);
 
-        graphics.text(this.font, Component.literal("\u26A1 Optimization:"), cardX + 8, cardY + 20, 0xFFCCCCCC);
-        graphics.text(this.font, Component.literal("Active"), cardX + 92, cardY + 20, 0xFF4EF087);
+        graphics.text(this.font, Component.literal("Optimization:"), cardX + 6, cardY + 18, 0xFFCCCCCC);
+        graphics.text(this.font, Component.literal("Active"), cardX + 85, cardY + 18, 0xFF4EF087);
 
-        graphics.text(this.font, Component.literal("\u2699 Render Mode:"), cardX + 8, cardY + 34, 0xFFCCCCCC);
-        graphics.text(this.font, Component.literal("Vulkan"), cardX + 92, cardY + 34, 0xFFFFFFFF);
+        graphics.text(this.font, Component.literal("Render Mode:"), cardX + 6, cardY + 30, 0xFFCCCCCC);
+        graphics.text(this.font, Component.literal("Vulkan"), cardX + 85, cardY + 30, 0xFFFFFFFF);
 
-        graphics.text(this.font, Component.literal("\u2756 FPS Boost:"), cardX + 8, cardY + 48, 0xFFCCCCCC);
-        graphics.text(this.font, Component.literal("Enabled"), cardX + 92, cardY + 48, 0xFFFFFFFF);
+        graphics.text(this.font, Component.literal("FPS Boost:"), cardX + 6, cardY + 42, 0xFFCCCCCC);
+        graphics.text(this.font, Component.literal("Enabled"), cardX + 85, cardY + 42, 0xFFFFFFFF);
 
         // Dynamic Memory Usage calculation
         long maxMem = Runtime.getRuntime().maxMemory();
@@ -182,51 +183,48 @@ public abstract class TitleScreenMixin extends Screen {
         long usedMem = totalMem - freeMem;
         int ramPercent = maxMem > 0 ? (int) ((usedMem * 100) / maxMem) : 42;
 
-        graphics.text(this.font, Component.literal("\uD83D\uDCBE Memory Usage:"), cardX + 8, cardY + 62, 0xFFCCCCCC);
-        graphics.text(this.font, Component.literal(ramPercent + "%"), cardX + 110, cardY + 62, 0xFFFFFFFF);
+        graphics.text(this.font, Component.literal("Memory Usage:"), cardX + 6, cardY + 54, 0xFFCCCCCC);
+        graphics.text(this.font, Component.literal(ramPercent + "%"), cardX + 100, cardY + 54, 0xFFFFFFFF);
 
         // Memory Progress Bar
-        int barX = cardX + 8;
-        int barY = cardY + 76;
-        int barW = cardW - 16;
-        int barH = 5;
+        int barX = cardX + 6;
+        int barY = cardY + 66;
+        int barW = cardW - 12;
+        int barH = 4;
         graphics.fill(barX, barY, barX + barW, barY + barH, 0xFF2A2A34);
         int fillW = Math.max(4, (barW * ramPercent) / 100);
         graphics.fill(barX, barY, barX + fillW, barY + barH, 0xFF7B4EC9);
 
         // ── Left Card 2: NEWS FEED ────────────────────────────────────────────
-        int card2Y = cardY + card1H + 8;
-        int card2H = 138;
+        int card2Y = cardY + card1H + 6;
+        int card2H = 96;
 
         graphics.fill(cardX, card2Y, cardX + cardW, card2Y + card2H, 0xD01C1C22);
         this.drawBorder(graphics, cardX, card2Y, cardW, card2H, 0x603C3C48);
 
-        graphics.text(this.font, Component.literal("NEWS FEED"), cardX + 8, card2Y + 6, 0xFFAB94E4);
+        graphics.text(this.font, Component.literal("NEWS FEED"), cardX + 6, card2Y + 5, 0xFFAB94E4);
 
         // News item 1
-        graphics.fill(cardX + 8, card2Y + 20, cardX + 28, card2Y + 40, 0xFF5D2E8E);
-        graphics.text(this.font, Component.literal("F"), cardX + 14, card2Y + 26, 0xFFFFFFFF);
-        graphics.text(this.font, Component.literal("Flexium 1.0.0 Released!"), cardX + 32, card2Y + 20, 0xFFFFFFFF);
-        graphics.text(this.font, Component.literal("Performance improvements"), cardX + 32, card2Y + 30, 0xFF888898);
-        graphics.text(this.font, Component.literal("May 25, 2026"), cardX + 32, card2Y + 38, 0xFF666678);
+        graphics.fill(cardX + 6, card2Y + 18, cardX + 22, card2Y + 34, 0xFF5D2E8E);
+        graphics.text(this.font, Component.literal("F"), cardX + 11, card2Y + 22, 0xFFFFFFFF);
+        graphics.text(this.font, Component.literal("Flexium 1.0.0 Released"), cardX + 26, card2Y + 18, 0xFFFFFFFF);
+        graphics.text(this.font, Component.literal("Performance boost"), cardX + 26, card2Y + 26, 0xFF888898);
 
         // News item 2
-        graphics.fill(cardX + 8, card2Y + 56, cardX + 28, card2Y + 76, 0xFF2A4A3A);
-        graphics.text(this.font, Component.literal("Improved Chunk Culling"), cardX + 32, card2Y + 56, 0xFFFFFFFF);
-        graphics.text(this.font, Component.literal("Better chunk management"), cardX + 32, card2Y + 66, 0xFF888898);
-        graphics.text(this.font, Component.literal("May 20, 2026"), cardX + 32, card2Y + 74, 0xFF666678);
+        graphics.fill(cardX + 6, card2Y + 44, cardX + 22, card2Y + 60, 0xFF2A4A3A);
+        graphics.text(this.font, Component.literal("Improved Chunk Culling"), cardX + 26, card2Y + 44, 0xFFFFFFFF);
+        graphics.text(this.font, Component.literal("Higher FPS management"), cardX + 26, card2Y + 52, 0xFF888898);
 
         // News item 3
-        graphics.fill(cardX + 8, card2Y + 92, cardX + 28, card2Y + 112, 0xFF4A2A4A);
-        graphics.text(this.font, Component.literal("Vulkan Renderer Update"), cardX + 32, card2Y + 92, 0xFFFFFFFF);
-        graphics.text(this.font, Component.literal("Enhanced stability"), cardX + 32, card2Y + 102, 0xFF888898);
-        graphics.text(this.font, Component.literal("May 15, 2026"), cardX + 32, card2Y + 110, 0xFF666678);
+        graphics.fill(cardX + 6, card2Y + 70, cardX + 22, card2Y + 86, 0xFF4A2A4A);
+        graphics.text(this.font, Component.literal("Vulkan Renderer Update"), cardX + 26, card2Y + 70, 0xFFFFFFFF);
+        graphics.text(this.font, Component.literal("Enhanced stability"), cardX + 26, card2Y + 78, 0xFF888898);
 
         // ── Splash Text under Minecraft Logo ──────────────────────────────────
         String splash = "Optimized. Faster. Better.";
         int splashW = this.font.width(splash);
         int splashX = (this.width - splashW) / 2;
-        graphics.text(this.font, Component.literal(splash), splashX, 98, 0xFFFFFF55);
+        graphics.text(this.font, Component.literal(splash), splashX, 102, 0xFFFFFF55);
 
         // ── Bottom Footer Bar ─────────────────────────────────────────────────
         int botY = this.height - bottomBarH;
