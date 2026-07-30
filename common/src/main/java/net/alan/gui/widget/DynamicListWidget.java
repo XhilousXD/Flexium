@@ -250,7 +250,7 @@ public class DynamicListWidget extends BaseWidget {
                 if (rowStyle != null && rowStyle.background_texture != null) {
                     Identifier tex = Identifier.tryParse(rowStyle.background_texture);
                     if (tex != null) {
-                        graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI, tex, listX, rowTop, dim.w, rowHeight, -1);
+                        graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, tex, listX, rowTop, 0.0F, 0.0F, dim.w, rowHeight, dim.w, rowHeight);
                     }
                 }
 

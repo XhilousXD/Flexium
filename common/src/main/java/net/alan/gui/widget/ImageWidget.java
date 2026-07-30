@@ -35,6 +35,6 @@ public class ImageWidget extends BaseWidget {
         Identifier id = Identifier.tryParse(normal);
         if (id == null) return;
 
-                graphics.blit(id, screenX, screenY, 0, 0, dim.w, dim.h, dim.w, dim.h);
+                graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, id, screenX, screenY, 0.0F, 0.0F, dim.w, dim.h, dim.w, dim.h);
     }
 }

@@ -212,7 +212,7 @@ public class SelectorWidget extends BaseWidget {
         if (texPath != null && !texPath.isEmpty()) {
             var id = Identifier.tryParse(texPath);
             if (id != null) {
-                                graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI, id, x, y, w, h, -1);
+                                graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, id, x, y, 0.0F, 0.0F, w, h, w, h);
             }
         } else {
             graphics.fill(x, y, x + w, y + h, bgColor);

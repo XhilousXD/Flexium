@@ -120,7 +120,7 @@ public class BoxWidget extends BaseWidget {
         if (frameTexture != null && frameTexture.getNormal() != null) {
             var texId = Identifier.tryParse(frameTexture.getNormal());
             if (texId != null) {
-                                graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI, texId, boxX, boxY, dim.w, dim.h, -1);
+                                graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, texId, boxX, boxY, 0.0F, 0.0F, dim.w, dim.h, dim.w, dim.h);
             }
         }
 

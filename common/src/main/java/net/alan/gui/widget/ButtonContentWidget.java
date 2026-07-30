@@ -123,7 +123,7 @@ public class ButtonContentWidget extends BaseWidget {
             if (texPath != null && !texPath.isEmpty()) {
                 var texId = Identifier.tryParse(texPath);
                 if (texId != null) {
-                                        graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI, texId, screenX, screenY, dim.w, dim.h, -1);
+                                        graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, texId, screenX, screenY, 0.0F, 0.0F, dim.w, dim.h, dim.w, dim.h);
                 }
             }
         }

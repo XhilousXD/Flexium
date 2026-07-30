@@ -108,7 +108,7 @@ public class CycleButtonWidget extends BaseWidget {
         if (texPath != null && !texPath.isEmpty()) {
             var id = Identifier.tryParse(texPath);
             if (id != null) {
-                                graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI, id, screenX, screenY, dim.w, dim.h, -1);
+                                graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, id, screenX, screenY, 0.0F, 0.0F, dim.w, dim.h, dim.w, dim.h);
             }
         } else {
             // 默认背景

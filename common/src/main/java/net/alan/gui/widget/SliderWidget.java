@@ -91,7 +91,7 @@ public class SliderWidget extends BaseWidget {
         if (trackTex != null && !trackTex.isEmpty()) {
             var id = Identifier.tryParse(trackTex);
             if (id != null) {
-                                graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI, id, screenX, screenY, dim.w, dim.h, -1);
+                                graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, id, screenX, screenY, 0.0F, 0.0F, dim.w, dim.h, dim.w, dim.h);
             }
         } else {
             int trackY = screenY + dim.h / 2 - 2;
@@ -104,7 +104,7 @@ public class SliderWidget extends BaseWidget {
         if (handleTex != null && !handleTex.isEmpty()) {
             var id = Identifier.tryParse(handleTex);
             if (id != null) {
-                                graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI, id, handleX, screenY, HANDLE_WIDTH, dim.h, -1);
+                                graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, id, handleX, screenY, 0.0F, 0.0F, HANDLE_WIDTH, dim.h, HANDLE_WIDTH, dim.h);
             }
         } else {
             graphics.fill(handleX, screenY, handleX + HANDLE_WIDTH, screenY + dim.h, 0xFFFFFFFF);
