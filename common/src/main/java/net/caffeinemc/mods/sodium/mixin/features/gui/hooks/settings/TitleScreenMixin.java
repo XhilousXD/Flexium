@@ -27,12 +27,11 @@ public abstract class TitleScreenMixin extends Screen {
     private void onInit(CallbackInfo ci) {
         this.clearWidgets();
 
-        int centerW = 210;
+        int centerW = 220;
         int centerH = 22;
-        // Center in the main area between left cards panel (165px) and right edge
-        int leftPadding = 165;
-        int centerX = leftPadding + (this.width - leftPadding - centerW) / 2;
-        int startY = (this.height / 4) + 68;
+        // True screen center horizontally and vertically
+        int centerX = (this.width - centerW) / 2;
+        int startY = (this.height / 2) - 10;
         int spacing = 26;
 
         // ── Main Menu Buttons (Center Stack) ──────────────────────────────────
@@ -225,9 +224,8 @@ public abstract class TitleScreenMixin extends Screen {
         // ── Splash Text under Minecraft Logo ──────────────────────────────────
         String splash = "Optimized. Faster. Better.";
         int splashW = this.font.width(splash);
-        int leftPadding = 165;
-        int splashX = leftPadding + (this.width - leftPadding - splashW) / 2;
-        int splashY = (this.height / 4) + 52;
+        int splashX = (this.width - splashW) / 2;
+        int splashY = (this.height / 2) - 28;
         graphics.text(this.font, Component.literal(splash), splashX, splashY, 0xFFFFFF55);
 
         // ── Bottom Footer Bar ─────────────────────────────────────────────────
