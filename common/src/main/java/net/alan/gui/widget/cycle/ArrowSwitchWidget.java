@@ -161,7 +161,11 @@ public class ArrowSwitchWidget extends BaseWidget {
         if (texPath != null && !texPath.isEmpty()) {
             var id = Identifier.tryParse(texPath);
             if (id != null) {
-                                graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, id, x, y, 0.0F, 0.0F, w, h, w, h);
+                                if (id.getPath().contains("textures/") || id.getPath().endsWith(".png")) {
+    graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, id, x, y, 0.0F, 0.0F, w, h, w, h);
+} else {
+    graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, id, x, y, w, h, -1);
+}
             }
         } else {
             int bgColor;

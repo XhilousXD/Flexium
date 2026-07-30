@@ -69,7 +69,11 @@ public class ContentWidget extends BaseWidget {
         if (backgroundTexture != null && backgroundTexture.getNormal() != null) {
             var texId = Identifier.tryParse(backgroundTexture.getNormal());
             if (texId != null) {
-                graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, texId, cx, cy, 0.0F, 0.0F, dim.w, dim.h, dim.w, dim.h);
+                if (texId.getPath().contains("textures/") || texId.getPath().endsWith(".png")) {
+    graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, texId, cx, cy, 0.0F, 0.0F, dim.w, dim.h, dim.w, dim.h);
+} else {
+    graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, texId, cx, cy, dim.w, dim.h, -1);
+}
             }
         } else if (backgroundColor != null && !backgroundColor.isEmpty()) {
             graphics.fill(cx, cy, cx + dim.w, cy + dim.h, BackgroundRenderer.parseColor(backgroundColor));
@@ -154,7 +158,11 @@ public class ContentWidget extends BaseWidget {
         if (track.texture() != null && track.texture().getNormal() != null) {
             var texId = Identifier.tryParse(track.texture().getNormal());
             if (texId != null) {
-                graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, texId, sbX, sbY, 0.0F, 0.0F, sbW, ch, sbW, ch);
+                if (texId.getPath().contains("textures/") || texId.getPath().endsWith(".png")) {
+    graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, texId, sbX, sbY, 0.0F, 0.0F, sbW, ch, sbW, ch);
+} else {
+    graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, texId, sbX, sbY, sbW, ch, -1);
+}
             }
         } else if (track.color() != null) {
             graphics.fill(sbX, sbY, sbX + sbW, sbY + ch, BackgroundRenderer.parseColor(track.color()));
@@ -169,7 +177,11 @@ public class ContentWidget extends BaseWidget {
         if (thumb.texture() != null && thumb.texture().getNormal() != null) {
             var texId = Identifier.tryParse(thumb.texture().getNormal());
             if (texId != null) {
-                graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, texId, sbX, thumbY, 0.0F, 0.0F, sbW, thumbH, sbW, thumbH);
+                if (texId.getPath().contains("textures/") || texId.getPath().endsWith(".png")) {
+    graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, texId, sbX, thumbY, 0.0F, 0.0F, sbW, thumbH, sbW, thumbH);
+} else {
+    graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, texId, sbX, thumbY, sbW, thumbH, -1);
+}
             }
         } else if (thumb.color() != null) {
             renderScrollPart(graphics, sbX, thumbY, sbW, thumbH, null, thumb.color(), 0xAAFFFFFF);
@@ -187,7 +199,11 @@ public class ContentWidget extends BaseWidget {
         if (track.texture() != null && track.texture().getNormal() != null) {
             var texId = Identifier.tryParse(track.texture().getNormal());
             if (texId != null) {
-                graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, texId, sbX, sbY, 0.0F, 0.0F, cw, sbH, cw, sbH);
+                if (texId.getPath().contains("textures/") || texId.getPath().endsWith(".png")) {
+    graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, texId, sbX, sbY, 0.0F, 0.0F, cw, sbH, cw, sbH);
+} else {
+    graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, texId, sbX, sbY, cw, sbH, -1);
+}
             }
         } else if (track.color() != null) {
             graphics.fill(sbX, sbY, sbX + cw, sbY + sbH, BackgroundRenderer.parseColor(track.color()));
@@ -202,7 +218,11 @@ public class ContentWidget extends BaseWidget {
         if (thumb.texture() != null && thumb.texture().getNormal() != null) {
             var texId = Identifier.tryParse(thumb.texture().getNormal());
             if (texId != null) {
-                graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, texId, thumbX, sbY, 0.0F, 0.0F, thumbW, sbH, thumbW, sbH);
+                if (texId.getPath().contains("textures/") || texId.getPath().endsWith(".png")) {
+    graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, texId, thumbX, sbY, 0.0F, 0.0F, thumbW, sbH, thumbW, sbH);
+} else {
+    graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, texId, thumbX, sbY, thumbW, sbH, -1);
+}
             }
         } else if (thumb.color() != null) {
             renderScrollPart(graphics, thumbX, sbY, thumbW, sbH, null, thumb.color(), 0xAAFFFFFF);
@@ -234,7 +254,11 @@ public class ContentWidget extends BaseWidget {
         if (tex != null && tex.getNormal() != null) {
             Identifier rl = Identifier.tryParse(tex.getNormal());
             if (rl != null) {
-                graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, rl, x, y, 0.0F, 0.0F, w, h, w, h);
+                if (rl.getPath().contains("textures/") || rl.getPath().endsWith(".png")) {
+    graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, rl, x, y, 0.0F, 0.0F, w, h, w, h);
+} else {
+    graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, rl, x, y, w, h, -1);
+}
                 return;
             }
         }

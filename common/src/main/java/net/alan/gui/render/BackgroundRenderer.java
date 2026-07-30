@@ -103,7 +103,11 @@ public class BackgroundRenderer {
         if (screenAspect > texAspect) { rw = sw; rh = (int)(sw / texAspect); }
         else { rh = sh; rw = (int)(sh * texAspect); }
         int ox = (sw - rw) / 2, oy = (sh - rh) / 2;
-        graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, texture, ox, oy, 0.0F, 0.0F, rw, rh, rw, rh);
+        if (texture.getPath().contains("textures/") || texture.getPath().endsWith(".png")) {
+    graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, texture, ox, oy, 0.0F, 0.0F, rw, rh, rw, rh);
+} else {
+    graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, texture, ox, oy, rw, rh, -1);
+}
     }
 
     public static int parseColor(String colorStr) {

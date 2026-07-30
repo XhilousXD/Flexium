@@ -148,7 +148,11 @@ public class ButtonWidget extends BaseWidget {
             if (texPath != null && !texPath.isEmpty()) {
                 var texId = Identifier.tryParse(texPath);
                 if (texId != null) {
-                                        graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, texId, screenX, screenY, 0.0F, 0.0F, dim.w, dim.h, dim.w, dim.h);
+                                        if (texId.getPath().contains("textures/") || texId.getPath().endsWith(".png")) {
+    graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, texId, screenX, screenY, 0.0F, 0.0F, dim.w, dim.h, dim.w, dim.h);
+} else {
+    graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, texId, screenX, screenY, dim.w, dim.h, -1);
+}
                 }
             }
         }

@@ -250,7 +250,11 @@ public class DynamicListWidget extends BaseWidget {
                 if (rowStyle != null && rowStyle.background_texture != null) {
                     Identifier tex = Identifier.tryParse(rowStyle.background_texture);
                     if (tex != null) {
-                        graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, tex, listX, rowTop, 0.0F, 0.0F, dim.w, rowHeight, dim.w, rowHeight);
+                        if (tex.getPath().contains("textures/") || tex.getPath().endsWith(".png")) {
+    graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, tex, listX, rowTop, 0.0F, 0.0F, dim.w, rowHeight, dim.w, rowHeight);
+} else {
+    graphics.blitSprite(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, tex, listX, rowTop, dim.w, rowHeight, -1);
+}
                     }
                 }
 
@@ -266,7 +270,7 @@ public class DynamicListWidget extends BaseWidget {
 
                 Identifier iconTex = getIconTexture(data.getIconPath());
                 if (iconTex != null) {
-                    graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI, iconTex, listX + iconX, rowTop + iconY,
+                    graphics.blit(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, iconTex, listX + iconX, rowTop + iconY,
                             0, 0, iconW, iconH, iconW, iconH);
                 } else {
                     int pc = parseColor(iconPlaceholder);
