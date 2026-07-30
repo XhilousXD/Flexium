@@ -32,7 +32,7 @@ public abstract class TitleScreenMixin extends Screen {
         // Center in the main area between left cards panel (165px) and right edge
         int leftPadding = 165;
         int centerX = leftPadding + (this.width - leftPadding - centerW) / 2;
-        int startY = (this.height / 4) + 38;
+        int startY = (this.height / 4) + 68;
         int spacing = 26;
 
         // ── Main Menu Buttons (Center Stack) ──────────────────────────────────
@@ -227,7 +227,7 @@ public abstract class TitleScreenMixin extends Screen {
         int splashW = this.font.width(splash);
         int leftPadding = 165;
         int splashX = leftPadding + (this.width - leftPadding - splashW) / 2;
-        int splashY = (this.height / 4) + 20;
+        int splashY = (this.height / 4) + 52;
         graphics.text(this.font, Component.literal(splash), splashX, splashY, 0xFFFFFF55);
 
         // ── Bottom Footer Bar ─────────────────────────────────────────────────
