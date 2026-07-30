@@ -331,21 +331,62 @@ public class VideoSettingsScreen extends Screen implements ScreenPromptable, Scr
         int winW = this.dim.width();
         int winH = this.dim.height();
 
-        // Render main dark frame & top header bar
-        graphics.fill(winX, winY, winX + winW, winY + winH, 0xFA141417);
-        graphics.fill(winX, winY, winX + winW, winY + 22, 0xFF101012);
+        int sidebarW = Layout.PAGE_LIST_WIDTH;
+        int headerH   = 36;
+        int bottomBarH = 32;
 
-        // Top-left logo and title
-        graphics.text(this.font, Component.literal("F"), winX + 8, winY + 7, 0xFFAB94E4);
-        graphics.text(this.font, Component.literal("Flexium 1.0.0"), winX + 20, winY + 7, Colors.FOREGROUND);
+        // ── Main dark background ─────────────────────────────────────────────
+        graphics.fill(winX, winY, winX + winW, winY + winH, 0xFF151518);
 
-        // Top-center title
-        String headerTitle = "Flexium - Optimization Mod";
-        int titleWidth = this.font.width(headerTitle);
-        graphics.text(this.font, Component.literal(headerTitle), winX + (winW - titleWidth) / 2, winY + 7, 0xFFAB94E4);
+        // ── Top header bar ───────────────────────────────────────────────────
+        graphics.fill(winX, winY, winX + winW, winY + headerH, Colors.HEADER_BG);
+        // thin purple accent line under header
+        graphics.fill(winX, winY + headerH - 1, winX + winW, winY + headerH, 0x50AB94E4);
 
-        // Top-right close button icon
-        graphics.text(this.font, Component.literal("X"), winX + winW - 14, winY + 7, Colors.FOREGROUND_DISABLED);
+        // ── Left sidebar background ───────────────────────────────────────────
+        graphics.fill(winX, winY + headerH, winX + sidebarW, winY + winH - bottomBarH, Colors.SIDEBAR_BG);
+        // thin right border of sidebar
+        graphics.fill(winX + sidebarW, winY + headerH, winX + sidebarW + 1, winY + winH - bottomBarH, 0x40AB94E4);
+
+        // ── Main content area ─────────────────────────────────────────────────
+        graphics.fill(winX + sidebarW + 1, winY + headerH, winX + winW, winY + winH - bottomBarH, Colors.PANEL_BG);
+
+        // ── Bottom action bar ─────────────────────────────────────────────────
+        graphics.fill(winX, winY + winH - bottomBarH, winX + winW, winY + winH, Colors.BOTTOM_BAR_BG);
+        // thin top border of bottom bar
+        graphics.fill(winX, winY + winH - bottomBarH, winX + winW, winY + winH - bottomBarH + 1, 0x40AB94E4);
+
+        // ── "Made with performance in mind ♦" tagline ─────────────────────────
+        int taglineY = winY + winH - bottomBarH + (bottomBarH - this.font.lineHeight) / 2;
+        graphics.text(this.font, Component.literal("Made with performance in mind. \u2666"), winX + 12, taglineY, 0x80AB94E4);
+
+        // ── Header: brushy F logo ──────────────────────────────────────────────
+        // Draw a small purple diamond/logo box then "F" text
+        int logoBoxX = winX + 10;
+        int logoBoxY = winY + (headerH - 20) / 2;
+        graphics.fill(logoBoxX, logoBoxY, logoBoxX + 22, logoBoxY + 20, 0xFF5D2E8E);
+        graphics.fill(logoBoxX + 1, logoBoxY + 1, logoBoxX + 21, logoBoxY + 19, 0xFF7040B8);
+        // "F" letter centered in the box
+        int fX = logoBoxX + (22 - this.font.width("F")) / 2;
+        int fY = logoBoxY + (20 - this.font.lineHeight) / 2;
+        graphics.text(this.font, Component.literal("F"), fX, fY, 0xFFFFFFFF);
+
+        // ── Header: "FLEXIUM" bold white + version badge ──────────────────────
+        int titleX = logoBoxX + 26;
+        int titleBaseY = winY + (headerH - this.font.lineHeight * 2 - 2) / 2;
+        graphics.text(this.font, Component.literal("FLEXIUM"), titleX, titleBaseY, 0xFFFFFFFF);
+        // version badge "1.0.0"
+        int verBadgeX = titleX + this.font.width("FLEXIUM") + 5;
+        int verBadgeY = titleBaseY - 1;
+        graphics.fill(verBadgeX, verBadgeY, verBadgeX + this.font.width("1.0.0") + 6, verBadgeY + this.font.lineHeight + 2, 0xFF2E2E3A);
+        graphics.text(this.font, Component.literal("1.0.0"), verBadgeX + 3, verBadgeY + 1, 0xFFAB94E4);
+        // subtitle "Optimization Mod"
+        graphics.text(this.font, Component.literal("Optimization Mod"), titleX, titleBaseY + this.font.lineHeight + 2, 0xFF8870C8);
+
+        // ── Header: close "X" button ──────────────────────────────────────────
+        int closeXx = winX + winW - 20;
+        int closeXy = winY + (headerH - this.font.lineHeight) / 2;
+        graphics.text(this.font, Component.literal("\u00D7"), closeXx, closeXy, 0xFF888898);
 
         super.extractRenderState(graphics, this.prompt != null ? -1 : mouseX, this.prompt != null ? -1 : mouseY, delta);
 
@@ -355,6 +396,7 @@ public class VideoSettingsScreen extends Screen implements ScreenPromptable, Scr
             this.tooltip.render(graphics);
         }
     }
+
 
     private void updateControls(int mouseX, int mouseY) {
         boolean hasChanges = ConfigManager.CONFIG.anyOptionChanged();

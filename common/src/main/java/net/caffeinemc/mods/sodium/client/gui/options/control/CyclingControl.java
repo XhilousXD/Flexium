@@ -69,15 +69,30 @@ public class CyclingControl<T extends Enum<T>> implements Control {
             Component name = this.option.getElementName(value);
 
             int textWidth = this.getStringWidth(name);
-            int boxWidth = Math.max(90, textWidth + 20);
-            int boxHeight = 18;
+            final int chevronW = 10; // width for "v" chevron
+            int boxWidth = Math.max(90, textWidth + 20 + chevronW);
+            int boxHeight = 16;
             int x = this.getLimitX() - Layout.OPTION_TEXT_SIDE_PADDING - boxWidth;
             int y = this.getCenterY() - boxHeight / 2;
 
-            this.drawRect(graphics, x, y, x + boxWidth, y + boxHeight, 0xFF1E1E22);
-            this.drawBorder(graphics, x, y, x + boxWidth, y + boxHeight, 0xFF3F3F46);
+            boolean hov = this.isHovered();
 
-            this.drawString(graphics, name, x + (boxWidth - textWidth) / 2, y + (boxHeight - this.font.lineHeight) / 2 + 1, Colors.FOREGROUND);
+            // ── Dropdown box background ────────────────────────────────────────
+            this.drawRect(graphics, x, y, x + boxWidth, y + boxHeight,
+                    hov ? Colors.CARD_BG_HOVER : Colors.DROPDOWN_BG);
+            this.drawBorder(graphics, x, y, x + boxWidth, y + boxHeight,
+                    hov ? 0xFF6040A0 : Colors.DROPDOWN_BORDER);
+
+            // ── Value text ─────────────────────────────────────────────────────
+            int textX = x + 8;
+            int textY = y + (boxHeight - this.font.lineHeight) / 2 + 1;
+            int textColor = this.option.isEnabled() ? Colors.FOREGROUND : Colors.FOREGROUND_DISABLED;
+            this.drawString(graphics, name, textX, textY, textColor);
+
+            // ── Chevron "v" arrow on right side ────────────────────────────────
+            int chevX = x + boxWidth - chevronW - 2;
+            int chevColor = hov ? 0xFFAB94E4 : 0xFF888898;
+            this.drawString(graphics, "\u25BE", chevX, textY, chevColor);
 
             if (this.isHovered()) {
                 graphics.requestCursor(CursorTypes.POINTING_HAND);

@@ -56,31 +56,46 @@ public class TickBoxControl implements Control {
                 return;
             }
 
-            final int boxWidth = 44;
-            final int boxHeight = 18;
-            final int x = this.getLimitX() - Layout.OPTION_TEXT_SIDE_PADDING - boxWidth;
-            final int y = this.getCenterY() - boxHeight / 2;
-            final int xEnd = x + boxWidth;
-            final int yEnd = y + boxHeight;
+            // Pill-shaped toggle dimensions  (matches screenshot exactly)
+            final int pillW  = 46;
+            final int pillH  = 16;
+            final int knobSz = 10;
+
+            final int x  = this.getLimitX() - Layout.OPTION_TEXT_SIDE_PADDING - pillW;
+            final int y  = this.getCenterY() - pillH / 2;
+            final int x2 = x + pillW;
+            final int y2 = y + pillH;
 
             final boolean enabled = this.option.isEnabled();
-            final boolean ticked = this.option.getValidatedValue();
+            final boolean ticked  = this.option.getValidatedValue();
 
-            final int bgColor = enabled ? (ticked ? Colors.TOGGLE_ON : Colors.TOGGLE_OFF) : 0xFF1E1E22;
-            final int borderColor = enabled ? (ticked ? Colors.THEME_LIGHTER : 0xFF3F3F46) : 0xFF2F2F36;
-            final int textColor = enabled ? (ticked ? Colors.FOREGROUND : Colors.FOREGROUND_DISABLED) : Colors.FOREGROUND_DISABLED;
+            // ── Pill background ───────────────────────────────────────────────
+            int pillBg     = enabled ? (ticked ? Colors.TOGGLE_ON    : Colors.TOGGLE_OFF)     : 0xFF1E1E22;
+            int pillBorder = enabled ? (ticked ? 0xFF9B6FE4          : 0xFF3A3A46)             : 0xFF2A2A30;
+            int knobColor  = enabled ? (ticked ? Colors.TOGGLE_ON_KNOB : Colors.TOGGLE_OFF_KNOB) : 0xFF555560;
 
-            this.drawRect(graphics, x, y, xEnd, yEnd, bgColor);
-            this.drawBorder(graphics, x, y, xEnd, yEnd, borderColor);
+            this.drawRect(graphics, x, y, x2, y2, pillBg);
+            this.drawBorder(graphics, x, y, x2, y2, pillBorder);
 
+            // ── Sliding knob ─────────────────────────────────────────────────
+            int knobX = ticked ? (x2 - knobSz - 3) : (x + 3);
+            int knobY = y + (pillH - knobSz) / 2;
+            this.drawRect(graphics, knobX, knobY, knobX + knobSz, knobY + knobSz, knobColor);
+
+            // ── ON / OFF label ────────────────────────────────────────────────
+            int labelColor = enabled ? (ticked ? 0xFFFFFFFF : Colors.FOREGROUND_DISABLED) : Colors.FOREGROUND_DISABLED;
             String text = ticked ? "ON" : "OFF";
-            int textWidth = this.font.width(text);
-            this.drawString(graphics, text, x + (boxWidth - textWidth) / 2, y + (boxHeight - this.font.lineHeight) / 2 + 1, textColor);
+            int textW = this.font.width(text);
+            // position label on the opposite side of knob
+            int labelX = ticked ? (x + 3) : (x2 - textW - 4);
+            int labelY = y + (pillH - this.font.lineHeight) / 2 + 1;
+            this.drawString(graphics, text, labelX, labelY, labelColor);
 
             if (this.isHovered()) {
                 graphics.requestCursor(CursorTypes.POINTING_HAND);
             }
         }
+
 
         @Override
         public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
