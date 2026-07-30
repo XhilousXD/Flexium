@@ -8,6 +8,7 @@ import net.alan.gui.data.background.SlideGroup;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.resources.Identifier;
+import net.minecraft.client.renderer.RenderPipelines;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;

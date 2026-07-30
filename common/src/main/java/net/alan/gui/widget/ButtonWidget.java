@@ -10,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.resources.Identifier;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.sounds.SoundEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -146,8 +147,8 @@ public class ButtonWidget extends BaseWidget {
             if (texPath != null && !texPath.isEmpty()) {
                 var texId = Identifier.tryParse(texPath);
                 if (texId != null) {
-                    
-                    }
+                    graphics.blit(RenderPipelines.GUI_TEXTURED, texId, screenX, screenY, 0, 0, dim.w, dim.h, dim.w, dim.h);
+                }
             }
         }
 

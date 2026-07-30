@@ -5,6 +5,7 @@ import net.alan.gui.data.props.LayoutProps;
 import net.alan.gui.data.props.StyleProps;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.resources.Identifier;
+import net.minecraft.client.renderer.RenderPipelines;
 
 import java.util.Map;
 
@@ -34,7 +35,6 @@ public class ImageWidget extends BaseWidget {
 
         Identifier id = Identifier.tryParse(normal);
         if (id == null) return;
-
-        
-        }
+        graphics.blit(RenderPipelines.GUI_TEXTURED, id, screenX, screenY, 0, 0, dim.w, dim.h, dim.w, dim.h);
+    }
 }

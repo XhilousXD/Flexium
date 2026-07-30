@@ -9,6 +9,7 @@ import net.alan.gui.util.GameStateProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.resources.Identifier;
+import net.minecraft.client.renderer.RenderPipelines;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -115,8 +116,8 @@ public class BackgroundRenderer {
         if (screenAspect > texAspect) { rw = sw; rh = (int)(sw / texAspect); }
         else { rh = sh; rw = (int)(sh * texAspect); }
         int ox = (sw - rw) / 2, oy = (sh - rh) / 2;
-        
-        }
+        graphics.blit(RenderPipelines.GUI_TEXTURED, texture, ox, oy, 0, 0, rw, rh, rw, rh);
+    }
 
     public static int parseColor(String colorStr) {
         if (colorStr == null || colorStr.isEmpty()) return 0xFFFFFFFF;

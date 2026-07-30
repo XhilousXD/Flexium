@@ -7,6 +7,7 @@ import net.alan.gui.data.style.TextureSet;
 import net.alan.gui.render.BackgroundRenderer;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.resources.Identifier;
+import net.minecraft.client.renderer.RenderPipelines;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
