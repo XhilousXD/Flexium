@@ -69,7 +69,8 @@
   "mixins" : [
     "flexium-common.mixins.json",
     "flexium-frapi.mixins.json",
-    "flexium-fabric.mixins.json"
+    "flexium-fabric.mixins.json",
+    "flexium-sirius.mixins.json"
   ],
   "depends" : {
     "minecraft": ">=26.1.2",

@@ -27,6 +27,9 @@ config = "flexium-common.mixins.json"
 config = "flexium-neoforge.mixins.json"
 
 [[mixins]]
+config = "flexium-sirius.mixins.json"
+
+[[mixins]]
 config = "flexium-frapi.mixins.json"
 requiredMods = ["fabric_renderer_api_v1"]
 
